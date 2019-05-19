@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "gamemanager.h"
+#include "mainwindow.h"
 
 namespace Ui {
 class FirstScreen;
@@ -14,9 +15,6 @@ class FirstScreen : public QDialog
 
 public:
     explicit FirstScreen(QWidget *parent = nullptr);
-    int getPlayerNum();
-    int getPieceNum();
-    void setGameManager();
     ~FirstScreen();
 
 private slots:

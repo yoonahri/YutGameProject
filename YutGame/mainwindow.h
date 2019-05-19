@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "firstscreen.h"
+#include "gamemanager.h"
 
 namespace Ui {
 class MainWindow;
@@ -14,12 +14,14 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
+    void setGameManager(int, int);
     ~MainWindow();
 
 private:
     Ui::MainWindow *ui;
-    FirstScreen firstscreen;
-    int player_num, piece_num;
+    int player_num;
+    int piece_num;
+    GameManager gamemanager;
 };
 
 #endif // MAINWINDOW_H
