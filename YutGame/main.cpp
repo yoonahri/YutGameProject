@@ -3,6 +3,7 @@
 #include "gamemanager.h"
 #include "board.h"
 #include "gameevent.h"
+#include "firstscreen.h"
 #include <QDebug>
 
 int main(int argc, char *argv[])
@@ -11,15 +12,12 @@ int main(int argc, char *argv[])
     int input_player = 3;
     int input_piece_num = 3;
 
-    cout<<"gitingore file test";
-    GameManager gm(input_player,input_piece_num);
-    gm.gameStart();
-
-    //git push test
+    //GameManager gm(input_player,input_piece_num);
+    //gm.gameStart();
 
     QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+    FirstScreen s;
+    s.show();
 
     return a.exec();
 }

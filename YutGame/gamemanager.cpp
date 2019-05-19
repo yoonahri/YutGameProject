@@ -1,7 +1,11 @@
 #include "gamemanager.h"
 
-GameManager::GameManager(int player, int piece)
+GameManager::GameManager()
 {
+}
+
+void GameManager::setGameCondition(int player, int piece){
+
     this->num_of_player = player;
     this->num_of_piece = piece;
     this->curr_turn = 0;

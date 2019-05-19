@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "firstscreen.h"
 
 namespace Ui {
 class MainWindow;
@@ -17,6 +18,8 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    FirstScreen firstscreen;
+    int player_num, piece_num;
 };
 
 #endif // MAINWINDOW_H

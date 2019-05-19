@@ -26,6 +26,7 @@ CONFIG += c++11
 
 SOURCES += \
         board.cpp \
+        firstscreen.cpp \
         gameevent.cpp \
         gamemanager.cpp \
         main.cpp \
@@ -33,11 +34,13 @@ SOURCES += \
 
 HEADERS += \
         board.h \
+        firstscreen.h \
         gameevent.h \
         gamemanager.h \
         mainwindow.h
 
 FORMS += \
+        firstscreen.ui \
         mainwindow.ui
 
 # Default rules for deployment.

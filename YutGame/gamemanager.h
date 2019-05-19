@@ -15,7 +15,8 @@ private:
     Board board;
     GameEvent gameevent;
 public:
-    GameManager(int, int);
+    GameManager();
+    void setGameCondition(int, int);
     void gameStart();
     void turnChanger();
     void throwYut();
