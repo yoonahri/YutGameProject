@@ -36,16 +36,15 @@ void Board::move(size_t turn, size_t init_board, size_t clicked_board){
      * 처음위치가 아니라면 그 위치에 있는 내말(업은 말 포함) 전부가 이동시킬 위치로 이동
      * 이동 할 경우 처음 위치의 말은 0이 됨
     */
-
+/*
     if(init_board == 0){ //초기상태의 말 일때
-
         for(size_t i = 0; i < player_num; i++){
             if(board_status[clicked_board][i] != 0){
                 if(i == turn){ //업는 경우
                     board_status[clicked_board][i] += 1;
                 }
                 else{ //죽이는 경우
-                    board_status[0][i] = board_status[clicked_board][i];
+                    board_status[0][i] += board_status[clicked_board][i];
                     board_status[clicked_board][i] = 0;
                     board_status[clicked_board][turn] += 1;
                     this->isKilled = true;
@@ -61,11 +60,12 @@ void Board::move(size_t turn, size_t init_board, size_t clicked_board){
     else{ //이미 이동했던 말 일때
         for(size_t i = 0; i < player_num; i++){
             if(board_status[clicked_board][i] != 0){
+
                 if(i == turn){ //업는 경우
                     board_status[clicked_board][i] += board_status[init_board][turn];
                 }
                 else{ //죽이는 경우
-                    board_status[0][i] = board_status[clicked_board][i];
+                    board_status[0][i] += board_status[clicked_board][i];
                     board_status[clicked_board][i] = 0;
                     board_status[clicked_board][turn] += board_status[init_board][turn];
                     this->isKilled = true;
@@ -77,11 +77,57 @@ void Board::move(size_t turn, size_t init_board, size_t clicked_board){
         }
         board_status[init_board][turn] = 0;
     }
+*/
+    size_t temp = 99;
+
+    if(init_board == 0){ //초기상태의 말 일때
+        for(size_t i = 0; i < player_num; i++){
+            if(board_status[clicked_board][i] != 0){
+                temp = i;
+            }
+        }
+
+        if(temp == turn){ //업는 경우
+            board_status[clicked_board][temp] += 1;
+        }
+        else if(temp == 99){ //빈 공간에 이동하는 경우
+            board_status[clicked_board][turn] = 1;
+        }
+        else { //죽이는 경우
+            board_status[0][temp] += board_status[clicked_board][temp];
+            board_status[clicked_board][temp] = 0;
+            board_status[clicked_board][turn] += 1;
+            this->isKilled = true;
+        }
+        board_status[init_board][turn] -= 1;
+    }
+
+    else{ //이미 이동했던 말 일때
+        for(size_t i = 0; i < player_num; i++){
+            if(board_status[clicked_board][i] != 0){
+                temp = i;
+            }
+        }
+
+        if(temp == turn){ //업는 경우
+            board_status[clicked_board][temp] += 1;
+        }
+        else if(temp == 99){ //빈 공간에 이동하는 경우
+            board_status[clicked_board][turn] += board_status[init_board][turn];
+        }
+        else { //죽이는 경우
+            board_status[0][temp] += board_status[clicked_board][temp];
+            board_status[clicked_board][temp] = 0;
+            board_status[clicked_board][turn] += board_status[init_board][turn];
+            this->isKilled = true;
+        }
+        board_status[init_board][turn] = 0;
+    }
 
     //벡터 확인용 코드, 삭제 예정
     for(size_t i = 0; i < 30; i++){
         for(size_t j = 0; j < board_status[i].size(); j++){
-            cout<<board_status[i][j]<<" ";
+            cout<<i<<":"<<board_status[i][j]<<" ";
         }
         cout<<endl;
     }
@@ -91,21 +137,27 @@ bool Board::isKillingEventOccured(){
     return isKilled;
 }
 
+void Board::isKilledDone(){
+    isKilled = false;
+}
+
 int Board::gameOver(){
-    /* 이게 원래 코드
+
     for(size_t i = 0; i < player_num; i++){
-        if(board_status[30][i] == piece_num){
+        if(board_status[29][i] == piece_num){ //30...아니야...
             return i;
         }
     }
     return -1;
-    */
+
+    /*
     if(board_status[2][0] == 1){
         return 1;
     }
     else{
         return -1;
     }
+    */
 }
 
 

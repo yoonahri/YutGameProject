@@ -1,6 +1,7 @@
 #ifndef GAMEEVENT_H
 #define GAMEEVENT_H
 #include "board.h"
+#include "queue"
 
 
 class GameEvent

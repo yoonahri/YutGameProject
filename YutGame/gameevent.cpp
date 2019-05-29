@@ -64,8 +64,9 @@ bool GameEvent::IsMovablePos(int num_of_board_init, int num_of_yut, int num_of_b
         if(*m == num_of_board_des){
             return true;
         }
-        else{
-            return false;
-        }
+//        else{
+//            return false;
+//        }
     }
+    return false;
 }
