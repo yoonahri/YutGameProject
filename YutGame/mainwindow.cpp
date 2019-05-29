@@ -8,6 +8,37 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    buttonList.push_back(ui->Location0);
+    buttonList.push_back(ui->Location1);
+    buttonList.push_back(ui->Location2);
+    buttonList.push_back(ui->Location3);
+    buttonList.push_back(ui->Location4);
+    buttonList.push_back(ui->Location5);
+    buttonList.push_back(ui->Location6);
+    buttonList.push_back(ui->Location7);
+    buttonList.push_back(ui->Location8);
+    buttonList.push_back(ui->Location9);
+    buttonList.push_back(ui->Location10);
+    buttonList.push_back(ui->Location11);
+    buttonList.push_back(ui->Location12);
+    buttonList.push_back(ui->Location13);
+    buttonList.push_back(ui->Location14);
+    buttonList.push_back(ui->Location15);
+    buttonList.push_back(ui->Location16);
+    buttonList.push_back(ui->Location17);
+    buttonList.push_back(ui->Location18);
+    buttonList.push_back(ui->Location19);
+    buttonList.push_back(ui->Location20);
+    buttonList.push_back(ui->Location21);
+    buttonList.push_back(ui->Location22);
+    buttonList.push_back(ui->Location23);
+    buttonList.push_back(ui->Location24);
+    buttonList.push_back(ui->Location25);
+    buttonList.push_back(ui->Location26);
+    buttonList.push_back(ui->Location28);
+    buttonList.push_back(ui->Location29);
+    getBoardLocationNum();
 }
 
 void MainWindow::setGameManager(int player, int piece){
@@ -24,6 +55,58 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::getBoardLocationNum(){
+
+    for (int i = 0; i < buttonList.size(); i++) {
+        QPushButton* button = buttonList[i];
+        connect(button, &QPushButton::clicked, [this, button, i](){
+            if(this->gamemanager.getInitBoardClickable(i)){
+                this->gamemanager.setInitBoard(i);
+                this->highlightMovablePos(this->gamemanager.getYutNum(), i);
+            }
+            else if(this->gamemanager.getDestBoardClickable(i)){
+                this->movePiece(i);
+                if(gamemanager.getDestBoardPiece(i) != 0){
+                    //button->setText("1"); 업은 개수 띄우기
+                }
+                this->gamemanager.setDestBoard();
+            }
+            else {
+                cout << "cannot click this btn" << endl;
+            }
+            //button->setText("clicked");
+        });
+    }
+}
+
+void MainWindow::highlightMovablePos(int num_of_yut, int clicked_board) {
+
+    for(size_t m = 0 ; m < gamemanager.getMovablePos(clicked_board,num_of_yut).size() ; m++){
+    buttonList[gamemanager.getMovablePos(clicked_board,num_of_yut)[m]]->setStyleSheet("border-image: url(:highlightcircle.png);");
+    }
+}
+
+void MainWindow::movePiece(int clicked_piece){
+    switch(gamemanager.getTurn()){
+    case 0:
+        buttonList[clicked_piece]->setStyleSheet("border-image: url(:red.png);");
+        break;
+    case 1:
+        buttonList[clicked_piece]->setStyleSheet("border-image: url(:orange.png);");
+        break;
+    case 2:
+        buttonList[clicked_piece]->setStyleSheet("border-image: url(:green.png);");
+        break;
+    case 3:
+        buttonList[clicked_piece]->setStyleSheet("border-image: url(:blue.png);");
+        break;
+    }
+
+   // buttonList[clicked_piece]->setStyleSheet("border-image: url(:circle.png);");
+}
+
+
+
 void MainWindow::on_throwButton_clicked()
 {
     //throw possible 할 때 + 눌렀을 때
@@ -35,381 +118,3 @@ void MainWindow::on_throwButton_clicked()
     }
 }
 
-void MainWindow::on_Location0_clicked() //0번을 출발지로 놓고 테스트햇는데 바꿔야 함
-{
-    if(this->gamemanager.getInitBoardClickable()){
-        this->gamemanager.setInitBoard(0);
-    }
-    else if(this->gamemanager.getDestBoardClickable()){
-        this->gamemanager.setDestBoard(0);
-    }
-    else {
-        cout << "cannot click this btn" << endl;
-    }
-}
-
-void MainWindow::on_Location1_clicked()
-{
-    if(this->gamemanager.getInitBoardClickable()){
-        this->gamemanager.setInitBoard(1);
-    }
-    else if(this->gamemanager.getDestBoardClickable()){
-        this->gamemanager.setDestBoard(1);
-    }
-    else {
-        cout << "cannot click this btn" << endl;
-    }
-}
-
-void MainWindow::on_Location2_clicked()
-{
-    if(this->gamemanager.getInitBoardClickable()){
-        this->gamemanager.setInitBoard(2);
-    }
-    else if(this->gamemanager.getDestBoardClickable()){
-        this->gamemanager.setDestBoard(2);
-    }
-    else {
-        cout << "cannot click this btn" << endl;
-    }
-}
-
-
-void MainWindow::on_Location3_clicked()
-{
-    if(this->gamemanager.getInitBoardClickable()){
-        this->gamemanager.setInitBoard(3);
-    }
-    else if(this->gamemanager.getDestBoardClickable()){
-        this->gamemanager.setDestBoard(3);
-    }
-    else {
-        cout << "cannot click this btn" << endl;
-    }
-}
-
-void MainWindow::on_Location4_clicked()
-{
-    if(this->gamemanager.getInitBoardClickable()){
-        this->gamemanager.setInitBoard(4);
-    }
-    else if(this->gamemanager.getDestBoardClickable()){
-        this->gamemanager.setDestBoard(4);
-    }
-    else {
-        cout << "cannot click this btn" << endl;
-    }
-}
-
-void MainWindow::on_Location5_clicked()
-{
-    if(this->gamemanager.getInitBoardClickable()){
-        this->gamemanager.setInitBoard(5);
-    }
-    else if(this->gamemanager.getDestBoardClickable()){
-        this->gamemanager.setDestBoard(5);
-    }
-    else {
-        cout << "cannot click this btn" << endl;
-    }
-}
-
-void MainWindow::on_Location6_clicked()
-{
-    if(this->gamemanager.getInitBoardClickable()){
-        this->gamemanager.setInitBoard(6);
-    }
-    else if(this->gamemanager.getDestBoardClickable()){
-        this->gamemanager.setDestBoard(6);
-    }
-    else {
-        cout << "cannot click this btn" << endl;
-    }
-}
-
-
-void MainWindow::on_Location7_clicked()
-{
-    if(this->gamemanager.getInitBoardClickable()){
-        this->gamemanager.setInitBoard(7);
-    }
-    else if(this->gamemanager.getDestBoardClickable()){
-        this->gamemanager.setDestBoard(7);
-    }
-    else {
-        cout << "cannot click this btn" << endl;
-    }
-}
-
-void MainWindow::on_Location8_clicked()
-{
-    if(this->gamemanager.getInitBoardClickable()){
-        this->gamemanager.setInitBoard(8);
-    }
-    else if(this->gamemanager.getDestBoardClickable()){
-        this->gamemanager.setDestBoard(8);
-    }
-    else {
-        cout << "cannot click this btn" << endl;
-    }
-}
-
-void MainWindow::on_Location9_clicked()
-{
-    if(this->gamemanager.getInitBoardClickable()){
-        this->gamemanager.setInitBoard(9);
-    }
-    else if(this->gamemanager.getDestBoardClickable()){
-        this->gamemanager.setDestBoard(9);
-    }
-    else {
-        cout << "cannot click this btn" << endl;
-    }
-}
-
-void MainWindow::on_Location10_clicked()
-{
-    if(this->gamemanager.getInitBoardClickable()){
-        this->gamemanager.setInitBoard(10);
-    }
-    else if(this->gamemanager.getDestBoardClickable()){
-        this->gamemanager.setDestBoard(10);
-    }
-    else {
-        cout << "cannot click this btn" << endl;
-    }
-}
-
-void MainWindow::on_Location11_clicked()
-{
-    if(this->gamemanager.getInitBoardClickable()){
-        this->gamemanager.setInitBoard(11);
-    }
-    else if(this->gamemanager.getDestBoardClickable()){
-        this->gamemanager.setDestBoard(11);
-    }
-    else {
-        cout << "cannot click this btn" << endl;
-    }
-}
-
-void MainWindow::on_Location12_clicked()
-{
-    if(this->gamemanager.getInitBoardClickable()){
-        this->gamemanager.setInitBoard(12);
-    }
-    else if(this->gamemanager.getDestBoardClickable()){
-        this->gamemanager.setDestBoard(12);
-    }
-    else {
-        cout << "cannot click this btn" << endl;
-    }
-}
-
-void MainWindow::on_Location13_clicked()
-{
-    if(this->gamemanager.getInitBoardClickable()){
-        this->gamemanager.setInitBoard(13);
-    }
-    else if(this->gamemanager.getDestBoardClickable()){
-        this->gamemanager.setDestBoard(13);
-    }
-    else {
-        cout << "cannot click this btn" << endl;
-    }
-}
-
-void MainWindow::on_Location14_clicked()
-{
-    if(this->gamemanager.getInitBoardClickable()){
-        this->gamemanager.setInitBoard(14);
-    }
-    else if(this->gamemanager.getDestBoardClickable()){
-        this->gamemanager.setDestBoard(14);
-    }
-    else {
-        cout << "cannot click this btn" << endl;
-    }
-}
-
-void MainWindow::on_Location15_clicked()
-{
-    if(this->gamemanager.getInitBoardClickable()){
-        this->gamemanager.setInitBoard(15);
-    }
-    else if(this->gamemanager.getDestBoardClickable()){
-        this->gamemanager.setDestBoard(15);
-    }
-    else {
-        cout << "cannot click this btn" << endl;
-    }
-}
-
-void MainWindow::on_Location16_clicked()
-{
-    if(this->gamemanager.getInitBoardClickable()){
-        this->gamemanager.setInitBoard(16);
-    }
-    else if(this->gamemanager.getDestBoardClickable()){
-        this->gamemanager.setDestBoard(16);
-    }
-    else {
-        cout << "cannot click this btn" << endl;
-    }
-}
-
-void MainWindow::on_Location17_clicked()
-{
-    if(this->gamemanager.getInitBoardClickable()){
-        this->gamemanager.setInitBoard(17);
-    }
-    else if(this->gamemanager.getDestBoardClickable()){
-        this->gamemanager.setDestBoard(17);
-    }
-    else {
-        cout << "cannot click this btn" << endl;
-    }
-}
-
-void MainWindow::on_Location18_clicked()
-{
-    if(this->gamemanager.getInitBoardClickable()){
-        this->gamemanager.setInitBoard(18);
-    }
-    else if(this->gamemanager.getDestBoardClickable()){
-        this->gamemanager.setDestBoard(18);
-    }
-    else {
-        cout << "cannot click this btn" << endl;
-    }
-}
-
-void MainWindow::on_Location19_clicked()
-{
-    if(this->gamemanager.getInitBoardClickable()){
-        this->gamemanager.setInitBoard(19);
-    }
-    else if(this->gamemanager.getDestBoardClickable()){
-        this->gamemanager.setDestBoard(19);
-    }
-    else {
-        cout << "cannot click this btn" << endl;
-    }
-}
-
-void MainWindow::on_Location20_clicked()
-{
-    if(this->gamemanager.getInitBoardClickable()){
-        this->gamemanager.setInitBoard(20);
-    }
-    else if(this->gamemanager.getDestBoardClickable()){
-        this->gamemanager.setDestBoard(20);
-    }
-    else {
-        cout << "cannot click this btn" << endl;
-    }
-}
-
-void MainWindow::on_Location21_clicked()
-{
-    if(this->gamemanager.getInitBoardClickable()){
-        this->gamemanager.setInitBoard(21);
-    }
-    else if(this->gamemanager.getDestBoardClickable()){
-        this->gamemanager.setDestBoard(21);
-    }
-    else {
-        cout << "cannot click this btn" << endl;
-    }
-}
-
-void MainWindow::on_Location22_clicked()
-{
-    if(this->gamemanager.getInitBoardClickable()){
-        this->gamemanager.setInitBoard(22);
-    }
-    else if(this->gamemanager.getDestBoardClickable()){
-        this->gamemanager.setDestBoard(22);
-    }
-    else {
-        cout << "cannot click this btn" << endl;
-    }
-}
-
-void MainWindow::on_Location23_clicked()
-{
-    if(this->gamemanager.getInitBoardClickable()){
-        this->gamemanager.setInitBoard(23);
-    }
-    else if(this->gamemanager.getDestBoardClickable()){
-        this->gamemanager.setDestBoard(23);
-    }
-    else {
-        cout << "cannot click this btn" << endl;
-    }
-}
-
-void MainWindow::on_Location24_clicked()
-{
-    if(this->gamemanager.getInitBoardClickable()){
-        this->gamemanager.setInitBoard(24);
-    }
-    else if(this->gamemanager.getDestBoardClickable()){
-        this->gamemanager.setDestBoard(24);
-    }
-    else {
-        cout << "cannot click this btn" << endl;
-    }
-}
-
-void MainWindow::on_Location25_clicked()
-{
-    if(this->gamemanager.getInitBoardClickable()){
-        this->gamemanager.setInitBoard(25);
-    }
-    else if(this->gamemanager.getDestBoardClickable()){
-        this->gamemanager.setDestBoard(25);
-    }
-    else {
-        cout << "cannot click this btn" << endl;
-    }
-}
-
-void MainWindow::on_Location26_clicked()
-{
-    if(this->gamemanager.getInitBoardClickable()){
-        this->gamemanager.setInitBoard(26);
-    }
-    else if(this->gamemanager.getDestBoardClickable()){
-        this->gamemanager.setDestBoard(26);
-    }
-    else {
-        cout << "cannot click this btn" << endl;
-    }
-}
-
-void MainWindow::on_Location28_clicked()
-{
-    if(this->gamemanager.getInitBoardClickable()){
-        this->gamemanager.setInitBoard(28);
-    }
-    else if(this->gamemanager.getDestBoardClickable()){
-        this->gamemanager.setDestBoard(28);
-    }
-    else {
-        cout << "cannot click this btn" << endl;
-    }
-}
-
-void MainWindow::on_Location29_clicked()
-{
-    if(this->gamemanager.getInitBoardClickable()){
-        this->gamemanager.setInitBoard(29);
-    }
-    else if(this->gamemanager.getDestBoardClickable()){
-        this->gamemanager.setDestBoard(29);
-    }
-    else {
-        cout << "cannot click this btn" << endl;
-    }
-}

@@ -18,9 +18,11 @@ private:
     bool init_board_clickable;
     bool dest_board_clickable;
     //vector<int> result_of_yuts;
+    vector<vector<vector<int>>> movable_pos;
     queue<int> result_of_yuts;
     Board board;
     GameEvent gameevent;
+
 public:
     GameManager();
     void setGameCondition(int, int);
@@ -28,10 +30,14 @@ public:
     void turnChanger();
     bool getIsThrowPossible();
     void setInitBoard(int);
-    void setDestBoard(int);
-    bool getInitBoardClickable();
-    bool getDestBoardClickable();
+    void setDestBoard();
+    bool getInitBoardClickable(int);
+    bool getDestBoardClickable(int);
     void throwYut();
+    vector<int> getMovablePos(int, int);
+    int getYutNum();
+    int getTurn();
+    int getDestBoardPiece(int);
 };
 
 #endif // GAMEMANAGER_H

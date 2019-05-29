@@ -116,11 +116,16 @@ void Board::move(size_t turn, size_t init_board, size_t clicked_board){
             board_status[clicked_board][turn] += board_status[init_board][turn];
         }
         else { //Á×ÀÌ´Â °æ¿ì
-            board_status[0][temp] += board_status[clicked_board][temp];
-            board_status[clicked_board][temp] = 0;
-            board_status[clicked_board][turn] += board_status[init_board][turn];
-            this->isKilled = true;
-        }
+                    if(clicked_board != 0){
+                        board_status[0][temp] += board_status[clicked_board][temp];
+                        board_status[clicked_board][temp] = 0;
+                        board_status[clicked_board][turn] += board_status[init_board][turn];
+                        this->isKilled = true;
+                    }
+                    else{
+                        board_status[clicked_board][turn] += board_status[init_board][turn];
+                    }
+                }
         board_status[init_board][turn] = 0;
     }
 
