@@ -19,8 +19,8 @@ public:
     void setGameManager(int, int);
     void createPiece();
     void getBoardLocationNum();
-    void highlightMovablePos(int, int);
-    void movePiece(int);
+    void highlightMovablePos(int, int, bool);
+    void movePiece(int, int);
 
     ~MainWindow();
 
@@ -33,6 +33,7 @@ private:
     int piece_num;
     GameManager gamemanager;
     QVector <QPushButton *> buttonList;
+    int init_board;
 };
 
 #endif // MAINWINDOW_H

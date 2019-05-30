@@ -36,66 +36,27 @@ void Board::move(size_t turn, size_t init_board, size_t clicked_board){
      * 처음위치가 아니라면 그 위치에 있는 내말(업은 말 포함) 전부가 이동시킬 위치로 이동
      * 이동 할 경우 처음 위치의 말은 0이 됨
     */
-/*
-    if(init_board == 0){ //초기상태의 말 일때
-        for(size_t i = 0; i < player_num; i++){
-            if(board_status[clicked_board][i] != 0){
-                if(i == turn){ //업는 경우
-                    board_status[clicked_board][i] += 1;
-                }
-                else{ //죽이는 경우
-                    board_status[0][i] += board_status[clicked_board][i];
-                    board_status[clicked_board][i] = 0;
-                    board_status[clicked_board][turn] += 1;
-                    this->isKilled = true;
-                }
-            }
-            else{ //빈 공간에 이동하는 경우
-                board_status[clicked_board][turn] = 1;
-            }
+
+    size_t searchClickedBoardTurn = 99;
+
+    for(size_t i = 0; i < player_num; i++){
+        if(board_status[clicked_board][i] != 0){
+            searchClickedBoardTurn = i;
         }
-        board_status[init_board][turn] -= 1;
     }
 
-    else{ //이미 이동했던 말 일때
-        for(size_t i = 0; i < player_num; i++){
-            if(board_status[clicked_board][i] != 0){
-
-                if(i == turn){ //업는 경우
-                    board_status[clicked_board][i] += board_status[init_board][turn];
-                }
-                else{ //죽이는 경우
-                    board_status[0][i] += board_status[clicked_board][i];
-                    board_status[clicked_board][i] = 0;
-                    board_status[clicked_board][turn] += board_status[init_board][turn];
-                    this->isKilled = true;
-                }
-            }
-            else{ //빈 공간에 이동하는 경우
-                board_status[clicked_board][turn] += board_status[init_board][turn];
-            }
-        }
-        board_status[init_board][turn] = 0;
-    }
-*/
-    size_t temp = 99;
-
     if(init_board == 0){ //초기상태의 말 일때
-        for(size_t i = 0; i < player_num; i++){
-            if(board_status[clicked_board][i] != 0){
-                temp = i;
-            }
+        if(searchClickedBoardTurn == turn){ //업는 경우
+            board_status[clicked_board][searchClickedBoardTurn] += 1;
         }
 
-        if(temp == turn){ //업는 경우
-            board_status[clicked_board][temp] += 1;
-        }
-        else if(temp == 99){ //빈 공간에 이동하는 경우
+        else if(searchClickedBoardTurn == 99){ //빈 공간에 이동하는 경우
             board_status[clicked_board][turn] = 1;
         }
+
         else { //죽이는 경우
-            board_status[0][temp] += board_status[clicked_board][temp];
-            board_status[clicked_board][temp] = 0;
+            board_status[0][searchClickedBoardTurn] += board_status[clicked_board][searchClickedBoardTurn];
+            board_status[clicked_board][searchClickedBoardTurn] = 0;
             board_status[clicked_board][turn] += 1;
             this->isKilled = true;
         }
@@ -103,29 +64,23 @@ void Board::move(size_t turn, size_t init_board, size_t clicked_board){
     }
 
     else{ //이미 이동했던 말 일때
-        for(size_t i = 0; i < player_num; i++){
-            if(board_status[clicked_board][i] != 0){
-                temp = i;
-            }
+        if(searchClickedBoardTurn == turn){ //업는 경우
+            board_status[clicked_board][searchClickedBoardTurn] += board_status[init_board][turn];
         }
-
-        if(temp == turn){ //업는 경우
-            board_status[clicked_board][temp] += 1;
-        }
-        else if(temp == 99){ //빈 공간에 이동하는 경우
+        else if(searchClickedBoardTurn == 99){ //빈 공간에 이동하는 경우
             board_status[clicked_board][turn] += board_status[init_board][turn];
         }
         else { //죽이는 경우
-                    if(clicked_board != 0){
-                        board_status[0][temp] += board_status[clicked_board][temp];
-                        board_status[clicked_board][temp] = 0;
-                        board_status[clicked_board][turn] += board_status[init_board][turn];
-                        this->isKilled = true;
-                    }
-                    else{
-                        board_status[clicked_board][turn] += board_status[init_board][turn];
-                    }
-                }
+            if(clicked_board != 0){
+                board_status[0][searchClickedBoardTurn] += board_status[clicked_board][searchClickedBoardTurn];
+                board_status[clicked_board][searchClickedBoardTurn] = 0;
+                board_status[clicked_board][turn] += board_status[init_board][turn];
+                this->isKilled = true;
+            }
+            else{
+                board_status[clicked_board][turn] += board_status[init_board][turn];
+            }
+        }
         board_status[init_board][turn] = 0;
     }
 

@@ -38,6 +38,7 @@ MainWindow::MainWindow(QWidget *parent) :
     buttonList.push_back(ui->Location26);
     buttonList.push_back(ui->Location28);
     buttonList.push_back(ui->Location29);
+
     getBoardLocationNum();
 }
 
@@ -45,13 +46,9 @@ void MainWindow::setGameManager(int player, int piece){
     this->player_num = player;
     this->piece_num = piece;
     this->gamemanager.setGameCondition(player, piece);
-
-    //�׽�Ʈ�� ����
-    //ui->label->setNum(player_num);
 }
 
 void MainWindow::createPiece(){
-
     for(int i = 0; i<4; i++){
         for(int j = 0; j<5; j++){
             ui->gridLayout->itemAtPosition(i, j)->widget()->hide();
@@ -63,7 +60,6 @@ void MainWindow::createPiece(){
             ui->gridLayout->itemAtPosition(i, j)->widget()->show();
         }
     }
-
 }
 
 MainWindow::~MainWindow()
@@ -73,36 +69,88 @@ MainWindow::~MainWindow()
 
 void MainWindow::getBoardLocationNum(){
 
+
     for (int i = 0; i < buttonList.size(); i++) {
         QPushButton* button = buttonList[i];
         connect(button, &QPushButton::clicked, [this, button, i](){
             if(this->gamemanager.getInitBoardClickable(i)){
                 this->gamemanager.setInitBoard(i);
-                this->highlightMovablePos(this->gamemanager.getYutNum(), i);
+                this->highlightMovablePos(this->gamemanager.getYutNum(), i, true);
+                this->init_board = i;
+                if(i == 0 || i == 5 || i == 10 || i == 15 || i == 22){
+                    button->setStyleSheet("border-image: url(:doublecircle.png);");
+                }
+                else{
+                    button->setStyleSheet("border-image: url(:circle.png);");
+                }
             }
             else if(this->gamemanager.getDestBoardClickable(i)){
-                this->movePiece(i);
-                if(gamemanager.getDestBoardPiece(i) != 0){
-                    //button->setText("1"); 업은 개수 띄우기
-                }
+                this->highlightMovablePos(this->gamemanager.getYutNum(), this->init_board, false);
+                this->movePiece(i, this->init_board);
                 this->gamemanager.setDestBoard();
             }
             else {
                 cout << "cannot click this btn" << endl;
             }
-            //button->setText("clicked");
         });
     }
 }
 
-void MainWindow::highlightMovablePos(int num_of_yut, int clicked_board) {
+void MainWindow::highlightMovablePos(int num_of_yut, int clicked_board, bool visible) {
 
-    for(size_t m = 0 ; m < gamemanager.getMovablePos(clicked_board,num_of_yut).size() ; m++){
-        buttonList[gamemanager.getMovablePos(clicked_board,num_of_yut)[m]]->setStyleSheet("border-image: url(:highlightcircle.png);");
+    if(visible){
+        for(size_t m = 0 ; m < gamemanager.getMovablePos(clicked_board,num_of_yut).size() ; m++){
+            buttonList[gamemanager.getMovablePos(clicked_board,num_of_yut)[m]]->setStyleSheet("border-image: url(:highlightcircle.png);");
+        }
+    }
+
+    else{
+        for(size_t m = 0 ; m < gamemanager.getMovablePos(clicked_board, num_of_yut).size() ; m++){
+            int i = gamemanager.getMovablePos(clicked_board,num_of_yut)[m];
+            bool isEmpty = true;
+            size_t existedPiece = 10;
+            for(size_t j = 0 ; j < gamemanager.getBoardStatus(i).size() ; j++ ){
+                if(gamemanager.getBoardStatus(i)[j] != 0){
+                    cout<<gamemanager.getBoardStatus(i)[j]<<endl;
+                    isEmpty = false;
+                    existedPiece = j;
+                    break;
+                }
+                else{
+                    isEmpty  = true;
+                }
+            }
+            if(isEmpty){
+                cout<<"am i empty?"<<endl;
+                if(i == 0 || i == 5 || i == 10 || i == 15 || i == 22){
+                    buttonList[i]->setStyleSheet("border-image: url(:doublecircle.png);");
+                }
+                else{
+                    buttonList[i]->setStyleSheet("border-image: url(:circle.png);");
+                }
+            }
+            else{
+                switch(existedPiece){
+                case 0:
+                    buttonList[i]->setStyleSheet("border-image: url(:red.png);");
+                    break;
+                case 1:
+                    buttonList[i]->setStyleSheet("border-image: url(:orange.png);");
+                    break;
+                case 2:
+                    buttonList[i]->setStyleSheet("border-image: url(:green.png);");
+                    break;
+                case 3:
+                    buttonList[i]->setStyleSheet("border-image: url(:blue.png);");
+                    break;
+                }
+            }
+        }
     }
 }
 
-void MainWindow::movePiece(int clicked_piece){
+void MainWindow::movePiece(int clicked_piece, int init_piece){
+
     switch(gamemanager.getTurn()){
     case 0:
         buttonList[clicked_piece]->setStyleSheet("border-image: url(:red.png);");
@@ -118,14 +166,22 @@ void MainWindow::movePiece(int clicked_piece){
         break;
     }
 
-   // buttonList[clicked_piece]->setStyleSheet("border-image: url(:circle.png);");
+    if(gamemanager.getBoardPiece(clicked_piece) >=1){
+        if(init_piece == 0){
+            buttonList[clicked_piece]->setText(QString::number(1 + this->gamemanager.getBoardPiece(clicked_piece)));
+        }
+        else{
+            buttonList[clicked_piece]->setText(QString::number(this->gamemanager.getBoardPiece(init_piece)
+                                                               + this->gamemanager.getBoardPiece(clicked_piece)));
+        }
+    }
 }
 
 
 
 void MainWindow::on_throwButton_clicked()
 {
-    //throw possible 할 때 + 눌렀을 때
+    //throw possible �� �� + ������ ��
     if(gamemanager.getIsThrowPossible()){
         this->gamemanager.throwYut();
 

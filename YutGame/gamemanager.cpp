@@ -13,16 +13,16 @@ GameManager::GameManager()
         { {6}, {8}, {9}, {10}, {11}, {12} },
         { {7}, {9}, {10}, {11}, {12}, {13} },
         { {8}, {10}, {11}, {12}, {13}, {14} },
-        { {9}, {11, 25}, {12, 26}, {13, 27}, {14, 28}, {15, 29} },
+        { {9}, {11, 25}, {12, 26}, {13, 22}, {14, 27}, {15, 28} },
         { {10}, {12}, {13}, {14}, {15}, {16} },
         { {11}, {13}, {14}, {15}, {16}, {17} },
         { {12}, {14}, {15}, {16}, {17}, {18} },
         { {13}, {15}, {16}, {17}, {18}, {19} },
-        { {14}, {16}, {17}, {18}, {19}, {30} },
-        { {15}, {17}, {18}, {19}, {30}, {30} },
-        { {16}, {18}, {19}, {30}, {30}, {30} },
-        { {17}, {19}, {30}, {30}, {30}, {30} },
-        { {18}, {30}, {30}, {30}, {30}, {30} },
+        { {14}, {16}, {17}, {18}, {19}, {29} },
+        { {15}, {17}, {18}, {19}, {29}, {29} },
+        { {16}, {18}, {19}, {29}, {29}, {29} },
+        { {17}, {19}, {29}, {29}, {29}, {29} },
+        { {18}, {29}, {29}, {29}, {29}, {29} },
         { {5}, {21}, {22}, {23}, {24}, {15} },
         { {20}, {22}, {23}, {24}, {15}, {16} },
         { {26}, {23, 27}, {24, 28}, {15, 29}, {16, 29}, {17, 29} },
@@ -36,7 +36,6 @@ GameManager::GameManager()
 }
 
 void GameManager::setGameCondition(int player, int piece){
-
     this->num_of_player = player;
     this->num_of_piece = piece;
     this->curr_turn = 0;
@@ -45,64 +44,6 @@ void GameManager::setGameCondition(int player, int piece){
     this->isThrowPossible = true;
     this->init_board_clickable = false;
     this->dest_board_clickable = false;
-}
-
-
-void GameManager::gameStart(){
-
-    /*
-     * 던지기버튼.setOnClickListener(), 클릭됐을 때,
-     * if(clicked) //윷이나 모가 나왔을 경우에 계속 누를 수 있게 함
-     */
-/*
-    IsThrowPossible = true;
-    if(!IsThrowPossible){ //던진 후
-        if(result_of_yuts[result_of_yuts.size()] >= 4){
-            do{
-                IsThrowPossible = true;
-            }while(result_of_yuts[result_of_yuts.size()] < 4
-                   || IsThrowPossible == false);
-        }
-*/
-        while(board.gameOver() < 0){
-            while(result_of_yuts.size() != 0){ //던진 윷을 모두 소비할 때까지 반복한다
-
-             /*
-             * 보드중 하나의 판넬이 클릭됐을 때
-             * 클릭된 보드의 번호를 전달받음
-             * 일단 그게 int num_of_board_init 이라 가정, 후에 반드시 수정
-             */
-                int num_of_board_init = 0;
-
-//                if(board.getBoardStatus()[num_of_board_init][curr_turn] != 0){
-//                    gameevent.highlightMovablePos(num_of_board_init, result_of_yuts.front());//갈 수 있는 보드 번호를 하이라이트해준다
-//                }
-            /*
-            * 이전 보드가 클릭된 상태로 다른 판넬이 클릭됐을 때
-            * 클릭된 보드 번호를 num_of_board_clicked라 가정
-            * 후에 반드시 수정
-            */
-
-                int num_of_board_clicked = 2;
-
-                // 누른 보드 판이 윷을 던졌을 때의 결과에 따라 움직일 수 있는 곳인지 판단, 만약 맞다면 보드의 벡터를 갱신한다.
-//                if(gameevent.IsMovablePos(num_of_board_init, result_of_yuts[0], num_of_board_clicked)){
-//                    board.move(curr_turn, num_of_board_init, num_of_board_clicked);
-
-                    //사용한 윷의 결과를 제거한다
-//                    auto used_yut = result_of_yuts.begin();
-//                    result_of_yuts.erase(used_yut);
-//                }
-
-                if(board.isKillingEventOccured() == true){ //말을 잡았을 경우
-                    throwYut();//누르기 버튼을 눌렀을 때
-                }
-            }
-            turnChanger();
-       }
-
-    //임의로 종료조건 설정했을 때, 삭제 예정
-    cout << "winning team is  " << board.gameOver();
 }
 
 void GameManager::turnChanger(){
@@ -121,7 +62,6 @@ bool GameManager::getIsThrowPossible(){
 void GameManager::setInitBoard(int clicked){
     this->init_board = clicked;
     if(board.getBoardStatus()[init_board][curr_turn] != 0){
-        gameevent.highlightMovablePos(init_board, result_of_yuts.front());
         this->init_board_clickable = false;
         this->dest_board_clickable = true;
         cout << "init : " << init_board << endl;
@@ -132,9 +72,11 @@ void GameManager::setInitBoard(int clicked){
 }
 
 void GameManager::setDestBoard(){
+
         board.move(curr_turn, init_board, dest_board);
 
         cout << "dest : " << dest_board << endl;
+
 
         result_of_yuts.pop();
         this->dest_board_clickable = false;
@@ -154,21 +96,26 @@ void GameManager::setDestBoard(){
             isThrowPossible = false; //?
             init_board_clickable = true;
         }
+
         else{
             cout << "next turn" << endl;
             turnChanger();
             isThrowPossible = true;
         }
+
 }
 
 
 bool GameManager::getInitBoardClickable(int clicked){
-    if(board.getBoardStatus()[clicked][curr_turn] == 0 || isThrowPossible){ // 보드가 비어있을 때
+    if(board.getBoardStatus()[clicked][curr_turn] == 0){ // 보드가 비어있을 때
         init_board_clickable = false;
     }
+    /* 이 부분 때문에 업을 때 오류생김
     else{
+        cout<<"problem!";
         init_board_clickable = true;
     }
+    */
     return this->init_board_clickable;
 }
 
@@ -195,6 +142,7 @@ void GameManager::throwYut(){
 
     srand((unsigned int)time(0));
     int result = ((int)rand()) % 47;
+
     result_of_yuts.push(probabilityOfYut[result]);
 
     cout<<probabilityOfYut[result]<<endl;//test
@@ -217,6 +165,10 @@ int GameManager::getTurn(){
     return curr_turn;
 }
 
-int GameManager::getDestBoardPiece(int clicked){
+int GameManager::getBoardPiece(int clicked){
     return board.getBoardStatus()[clicked][curr_turn];
+}
+
+vector<int> GameManager::getBoardStatus(int clicked){
+    return board.getBoardStatus()[clicked];
 }

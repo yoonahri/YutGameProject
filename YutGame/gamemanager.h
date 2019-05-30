@@ -12,7 +12,7 @@ private:
     int num_of_player;
     int num_of_piece;
     int curr_turn;
-    bool isThrowPossible; //이름 수정
+    bool isThrowPossible;
     int init_board;
     int dest_board;
     bool init_board_clickable;
@@ -37,7 +37,8 @@ public:
     vector<int> getMovablePos(int, int);
     int getYutNum();
     int getTurn();
-    int getDestBoardPiece(int);
+    int getBoardPiece(int);
+    vector<int> getBoardStatus(int);
 };
 
 #endif // GAMEMANAGER_H
