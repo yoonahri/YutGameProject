@@ -163,7 +163,7 @@ void GameManager::setDestBoard(){
 
 
 bool GameManager::getInitBoardClickable(int clicked){
-    if(board.getBoardStatus()[clicked][curr_turn] == 0){ // 보드가 비어있을 때
+    if(board.getBoardStatus()[clicked][curr_turn] == 0 || isThrowPossible){ // 보드가 비어있을 때
         init_board_clickable = false;
     }
     else{
