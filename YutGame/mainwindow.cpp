@@ -47,7 +47,23 @@ void MainWindow::setGameManager(int player, int piece){
     this->gamemanager.setGameCondition(player, piece);
 
     //�׽�Ʈ�� ����
-    ui->label->setNum(player_num);
+    //ui->label->setNum(player_num);
+}
+
+void MainWindow::createPiece(){
+
+    for(int i = 0; i<4; i++){
+        for(int j = 0; j<5; j++){
+            ui->gridLayout->itemAtPosition(i, j)->widget()->hide();
+        }
+    }
+
+    for(int i = 0 ; i<player_num ; i++){
+        for(int j = 0 ; j < piece_num ; j++){
+            ui->gridLayout->itemAtPosition(i, j)->widget()->show();
+        }
+    }
+
 }
 
 MainWindow::~MainWindow()
@@ -82,7 +98,7 @@ void MainWindow::getBoardLocationNum(){
 void MainWindow::highlightMovablePos(int num_of_yut, int clicked_board) {
 
     for(size_t m = 0 ; m < gamemanager.getMovablePos(clicked_board,num_of_yut).size() ; m++){
-    buttonList[gamemanager.getMovablePos(clicked_board,num_of_yut)[m]]->setStyleSheet("border-image: url(:highlightcircle.png);");
+        buttonList[gamemanager.getMovablePos(clicked_board,num_of_yut)[m]]->setStyleSheet("border-image: url(:highlightcircle.png);");
     }
 }
 
@@ -112,6 +128,27 @@ void MainWindow::on_throwButton_clicked()
     //throw possible 할 때 + 눌렀을 때
     if(gamemanager.getIsThrowPossible()){
         this->gamemanager.throwYut();
+
+        switch (this->gamemanager.getYutNum()) {
+        case 0:
+            ui->label->setStyleSheet("border-image: url(:pig1.png);");
+            break;
+        case 1:
+            ui->label->setStyleSheet("border-image: url(:pig.png);");
+            break;
+        case 2:
+            ui->label->setStyleSheet("border-image: url(:dog.png);");
+            break;
+        case 3:
+            ui->label->setStyleSheet("border-image: url(:sheep.png);");
+            break;
+        case 4:
+            ui->label->setStyleSheet("border-image: url(:cow.png);");
+            break;
+        case 5:
+            ui->label->setStyleSheet("border-image: url(:horse.png);");
+            break;
+        }
     }
     else {
         cout << "cannot throw yut" << endl;

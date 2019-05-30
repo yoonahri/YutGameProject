@@ -20,6 +20,7 @@ void FirstScreen::on_pushButton_start_clicked()
     this->hide();
     MainWindow * mainwindow = new MainWindow(this);
     mainwindow->setGameManager(player_num, piece_num);
+    mainwindow->createPiece();
     mainwindow->show();
 }
 

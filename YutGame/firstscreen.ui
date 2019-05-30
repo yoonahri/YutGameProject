@@ -73,7 +73,7 @@
   <widget class="QPushButton" name="pushButton_start">
    <property name="geometry">
     <rect>
-     <x>380</x>
+     <x>350</x>
      <y>380</y>
      <width>121</width>
      <height>71</height>
@@ -87,6 +87,9 @@
      <bold>true</bold>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
    <property name="text">
     <string>Start!</string>
    </property>
@@ -94,10 +97,10 @@
   <widget class="QComboBox" name="comboBox_player_num">
    <property name="geometry">
     <rect>
-     <x>530</x>
-     <y>130</y>
-     <width>121</width>
-     <height>41</height>
+     <x>550</x>
+     <y>120</y>
+     <width>131</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="font">
@@ -107,6 +110,9 @@
      <weight>75</weight>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
    <item>
     <property name="text">
@@ -127,10 +133,10 @@
   <widget class="QComboBox" name="comboBox_piece_num">
    <property name="geometry">
     <rect>
-     <x>540</x>
-     <y>240</y>
-     <width>121</width>
-     <height>41</height>
+     <x>550</x>
+     <y>260</y>
+     <width>131</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="font">
@@ -140,6 +146,9 @@
      <weight>75</weight>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
    <item>
     <property name="text">

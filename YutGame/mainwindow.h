@@ -5,7 +5,7 @@
 #include "gamemanager.h"
 #include <QVector>
 #include <QPushButton>
-
+#include <QLabel>
 namespace Ui {
 class MainWindow;
 }
@@ -17,6 +17,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     void setGameManager(int, int);
+    void createPiece();
     void getBoardLocationNum();
     void highlightMovablePos(int, int);
     void movePiece(int);
