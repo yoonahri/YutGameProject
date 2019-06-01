@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>816</width>
-    <height>519</height>
+    <width>902</width>
+    <height>674</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,9 +19,9 @@
   <widget class="QLabel" name="label_player">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>110</y>
-     <width>481</width>
+     <x>170</x>
+     <y>380</y>
+     <width>391</width>
      <height>71</height>
     </rect>
    </property>
@@ -46,9 +46,9 @@
   <widget class="QLabel" name="label_piece">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>260</y>
-     <width>541</width>
+     <x>170</x>
+     <y>460</y>
+     <width>391</width>
      <height>51</height>
     </rect>
    </property>
@@ -73,8 +73,8 @@
   <widget class="QPushButton" name="pushButton_start">
    <property name="geometry">
     <rect>
-     <x>350</x>
-     <y>380</y>
+     <x>390</x>
+     <y>570</y>
      <width>121</width>
      <height>71</height>
     </rect>
@@ -97,8 +97,8 @@
   <widget class="QComboBox" name="comboBox_player_num">
    <property name="geometry">
     <rect>
-     <x>550</x>
-     <y>120</y>
+     <x>600</x>
+     <y>390</y>
      <width>131</width>
      <height>51</height>
     </rect>
@@ -133,8 +133,8 @@
   <widget class="QComboBox" name="comboBox_piece_num">
    <property name="geometry">
     <rect>
-     <x>550</x>
-     <y>260</y>
+     <x>600</x>
+     <y>470</y>
      <width>131</width>
      <height>51</height>
     </rect>
@@ -171,14 +171,133 @@
     </property>
    </item>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="pig">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>350</y>
-     <width>131</width>
-     <height>41</height>
+     <x>200</x>
+     <y>240</y>
+     <width>111</width>
+     <height>111</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#pig{
+background-color: transparent;
+border-image: url(:pig2.png);
+background: none;
+border: none;
+background-repeat: none;
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="dog">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>250</y>
+     <width>121</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#dog{
+background-color: transparent;
+border-image: url(:dog2.png);
+background: none;
+border: none;
+background-repeat: none;
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="sheep">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>250</y>
+     <width>101</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#sheep{
+background-color: transparent;
+border-image: url(:sheep2.png);
+background: none;
+border: none;
+background-repeat: none;
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="horse">
+   <property name="geometry">
+    <rect>
+     <x>500</x>
+     <y>240</y>
+     <width>101</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#horse{
+background-color: transparent;
+border-image: url(:horse2.png);
+background: none;
+border: none;
+background-repeat: none;
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="cow">
+   <property name="geometry">
+    <rect>
+     <x>600</x>
+     <y>240</y>
+     <width>101</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#cow{
+background-color: transparent;
+border-image: url(:cow2.png);
+background: none;
+border: none;
+background-repeat: none;
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="yut2">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>30</y>
+     <width>191</width>
+     <height>211</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#yut2{
+background-color: transparent;
+border-image: url(:yut.png);
+background: none;
+border: none;
+background-repeat: none;
+}</string>
    </property>
    <property name="text">
     <string/>
