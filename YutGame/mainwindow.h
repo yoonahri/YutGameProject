@@ -27,6 +27,8 @@ public:
 private slots:
     void on_throwButton_clicked();
 
+    void on_testButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     int player_num;

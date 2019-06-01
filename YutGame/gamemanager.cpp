@@ -153,6 +153,19 @@ void GameManager::throwYut(){
     }
 }
 
+void GameManager::testThrowYut(int yut){
+    cout << "turn : " << curr_turn << endl; //test
+
+    result_of_yuts.push(yut);
+
+    cout<<yut<<endl; //test
+
+    if(yut<4){
+        this->isThrowPossible = false;
+        this->init_board_clickable = true;
+    }
+}
+
 vector<int> GameManager::getMovablePos(int num_of_board, int num_of_yut){
     return movable_pos[num_of_board][num_of_yut];
 }

@@ -34,6 +34,7 @@ public:
     bool getInitBoardClickable(int);
     bool getDestBoardClickable(int);
     void throwYut();
+    void testThrowYut(int);
     vector<int> getMovablePos(int, int);
     int getYutNum();
     int getTurn();

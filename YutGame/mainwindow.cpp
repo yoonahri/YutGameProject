@@ -211,3 +211,35 @@ void MainWindow::on_throwButton_clicked()
     }
 }
 
+
+void MainWindow::on_testButton_clicked()
+{
+    if(gamemanager.getIsThrowPossible()){
+
+        gamemanager.testThrowYut(this->ui->testYutBox->currentIndex());
+
+        switch (this->gamemanager.getYutNum()) {
+        case 0:
+            ui->label->setStyleSheet("border-image: url(:pig1.png);");
+            break;
+        case 1:
+            ui->label->setStyleSheet("border-image: url(:pig.png);");
+            break;
+        case 2:
+            ui->label->setStyleSheet("border-image: url(:dog.png);");
+            break;
+        case 3:
+            ui->label->setStyleSheet("border-image: url(:sheep.png);");
+            break;
+        case 4:
+            ui->label->setStyleSheet("border-image: url(:cow.png);");
+            break;
+        case 5:
+            ui->label->setStyleSheet("border-image: url(:horse.png);");
+            break;
+        }
+    }
+    else {
+        cout << "cannot throw yut" << endl;
+    }
+}

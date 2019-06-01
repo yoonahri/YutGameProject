@@ -3174,6 +3174,62 @@ background-repeat: none;
      <string/>
     </property>
    </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>1130</x>
+      <y>710</y>
+      <width>96</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QComboBox" name="testYutBox">
+       <property name="currentIndex">
+        <number>5</number>
+       </property>
+       <item>
+        <property name="text">
+         <string>빽도</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>도</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>개</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>걸</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>윷</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>모</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="testButton">
+       <property name="text">
+        <string>테스트용</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
    <zorder>line_15</zorder>
    <zorder>line_13</zorder>
    <zorder>line_14</zorder>
@@ -3227,6 +3283,7 @@ background-repeat: none;
    <zorder>gridLayoutWidget</zorder>
    <zorder>gridLayoutWidget_2</zorder>
    <zorder>label</zorder>
+   <zorder>testButton</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -3234,7 +3291,7 @@ background-repeat: none;
      <x>0</x>
      <y>0</y>
      <width>1706</width>
-     <height>17</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
