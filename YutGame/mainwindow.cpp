@@ -39,8 +39,10 @@ MainWindow::MainWindow(QWidget *parent) :
     buttonList.push_back(ui->Location28);
     buttonList.push_back(ui->Location29);
     buttonList.push_back(ui->Locationgoal);
-
+    ui->label_turn->setStyleSheet("border-image: url(:red.png);");
+    ui->label_3->hide();
     getBoardLocationNum();
+
 }
 
 void MainWindow::setGameManager(int player, int piece){
@@ -78,7 +80,7 @@ void MainWindow::getBoardLocationNum(){
                 this->gamemanager.setInitBoard(i);
                 this->highlightMovablePos(this->gamemanager.getYutNum(), i, true);
                 this->init_board = i;
-                 button->setText("");
+                button->setText("");
                 if(i == 0 || i == 5 || i == 10 || i == 15 || i == 22){
                     button->setStyleSheet("border-image: url(:doublecircle.png);");
                 }
@@ -90,6 +92,8 @@ void MainWindow::getBoardLocationNum(){
                 this->highlightMovablePos(this->gamemanager.getYutNum(), this->init_board, false);
                 this->movePiece(i, this->init_board);
                 this->gamemanager.setDestBoard();
+                this->showTurn();
+
             }
             else {
                 cout << "cannot click this btn" << endl;
@@ -178,6 +182,7 @@ void MainWindow::movePiece(int clicked_piece, int init_piece){
         }
 
         if(gamemanager.getBoardPiece(clicked_piece) >=1){
+
             if(init_piece == 0){
                 buttonList[clicked_piece]->setText(QString::number(1 + this->gamemanager.getBoardPiece(clicked_piece)));
             }
@@ -185,6 +190,14 @@ void MainWindow::movePiece(int clicked_piece, int init_piece){
                 buttonList[clicked_piece]->setText(QString::number(this->gamemanager.getBoardPiece(init_piece)
                                                                    + this->gamemanager.getBoardPiece(clicked_piece)));
             }
+        }
+
+        for(size_t i = 0 ; i < gamemanager.getBoardStatus(clicked_piece).size() ; i++ ){
+            if(gamemanager.getBoardStatus(clicked_piece)[i] != 0 && gamemanager.getTurn() != i){
+                ui->label_3->show();
+                ui->gridLayout->itemAtPosition(i, (gamemanager.getBoardStatus(clicked_piece)[i]+gamemanager.getBoardStatus(0)[i])-1)->widget()->show();
+            }
+
         }
     }
 }
@@ -198,24 +211,31 @@ void MainWindow::on_throwButton_clicked()
 
         switch (this->gamemanager.getBackYutNum()) {
         case 0:
+            ui->label_3->hide();
             ui->label->setStyleSheet("border-image: url(:pig1.png);");
             break;
         case 1:
+            ui->label_3->hide();
             ui->label->setStyleSheet("border-image: url(:pig.png);");
             break;
         case 2:
+            ui->label_3->hide();
             ui->label->setStyleSheet("border-image: url(:dog.png);");
             break;
         case 3:
+            ui->label_3->hide();
             ui->label->setStyleSheet("border-image: url(:sheep.png);");
             break;
         case 4:
             ui->label->setStyleSheet("border-image: url(:cow.png);");
+            ui->label_3->show();
             break;
         case 5:
             ui->label->setStyleSheet("border-image: url(:horse.png);");
+            ui->label_3->show();
             break;
         }
+
     }
     else {
         cout << "cannot throw yut" << endl;
@@ -254,3 +274,28 @@ void MainWindow::on_testButton_clicked()
         cout << "cannot throw yut" << endl;
     }
 }
+
+void MainWindow::on_Location0_clicked()
+{
+    ui->gridLayout->itemAtPosition(gamemanager.getTurn(),gamemanager.getBoardPiece(0)-1)->widget()->hide();
+}
+
+void MainWindow::showTurn()
+{
+    switch(gamemanager.getTurn()){
+    case 0:
+        ui->label_turn->setStyleSheet("border-image: url(:red.png);");
+        break;
+    case 1:
+        ui->label_turn->setStyleSheet("border-image: url(:orange.png);");
+        break;
+    case 2:
+        ui->label_turn->setStyleSheet("border-image: url(:green.png);");
+        break;
+    case 3:
+        ui->label_turn->setStyleSheet("border-image: url(:blue.png);");
+        break;
+    }
+}
+
+
