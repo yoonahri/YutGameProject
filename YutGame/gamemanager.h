@@ -2,7 +2,6 @@
 #define GAMEMANAGER_H
 
 #include "board.h"
-#include "gameevent.h"
 #include "ctime"
 #include "queue"
 
@@ -17,11 +16,9 @@ private:
     int dest_board;
     bool init_board_clickable;
     bool dest_board_clickable;
-    //vector<int> result_of_yuts;
     vector<vector<vector<int>>> movable_pos;
     queue<int> result_of_yuts;
     Board board;
-    GameEvent gameevent;
 
 public:
     GameManager();
