@@ -102,12 +102,12 @@ void MainWindow::getBoardLocationNum(){
                 if(i != 29){
                 this->highlightMovablePos(this->gamemanager.getYutNum(), this->init_board, false);
                 this->movePiece(i, this->init_board);
-                this->gamemanager.setDestBoard();
                 }
                 else{
                     button->setText("goal in!");
 
                 }
+                this->gamemanager.setDestBoard();
                 this->showTurn();
                 this->showScore();
 
