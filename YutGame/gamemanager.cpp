@@ -107,6 +107,7 @@ void GameManager::setDestBoard(){
 
 
 bool GameManager::getInitBoardClickable(int clicked){
+    cout<<"getInitBoardClickable"<<endl;
     if(board.getBoardStatus()[clicked][curr_turn] == 0){ // 보드가 비어있을 때
         init_board_clickable = false;
     }
@@ -120,10 +121,13 @@ bool GameManager::getInitBoardClickable(int clicked){
 }
 
 bool GameManager::getDestBoardClickable(int clicked){
+    cout<<"getDestBoardClickable"<<endl;
     this->dest_board = clicked;
-    if(this->isMovablePos(init_board, result_of_yuts.front(), dest_board)){
-        cout << this->gameevent.IsMovablePos(init_board, result_of_yuts.front(), dest_board) << endl;
-        dest_board_clickable = true;
+    if(!result_of_yuts.empty()){
+        if(this->isMovablePos(init_board, result_of_yuts.front(), dest_board)){
+            cout << this->isMovablePos(init_board, result_of_yuts.front(), dest_board) << endl;
+            dest_board_clickable = true;
+        }
     }
     else{
         dest_board_clickable = false;

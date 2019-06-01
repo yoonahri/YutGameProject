@@ -13,5 +13,11 @@
         <file>pig.png</file>
         <file>sheep.png</file>
         <file>pig1.png</file>
+        <file>dog2.png</file>
+        <file>cow2.png</file>
+        <file>horse2.png</file>
+        <file>pig2.png</file>
+        <file>sheep2.png</file>
+        <file>yut.png</file>
     </qresource>
 </RCC>

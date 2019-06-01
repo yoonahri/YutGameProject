@@ -27,7 +27,6 @@ CONFIG += c++11
 SOURCES += \
         board.cpp \
         firstscreen.cpp \
-        gameevent.cpp \
         gamemanager.cpp \
         main.cpp \
         mainwindow.cpp
@@ -35,7 +34,6 @@ SOURCES += \
 HEADERS += \
         board.h \
         firstscreen.h \
-        gameevent.h \
         gamemanager.h \
         mainwindow.h
 
