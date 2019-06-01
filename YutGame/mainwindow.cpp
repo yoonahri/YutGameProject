@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QObject>
 #include <iostream>
+#include <exitscreen.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -81,7 +82,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::getBoardLocationNum(){
 
-
     for (int i = 0; i < buttonList.size(); i++) {
         QPushButton* button = buttonList[i];
         connect(button, &QPushButton::clicked, [this, button, i](){
@@ -111,6 +111,10 @@ void MainWindow::getBoardLocationNum(){
                 this->showTurn();
                 this->showScore();
 
+
+                if(gamemanager.getWinner() >= 0){
+                    gameOver();
+                }
             }
             else {
                 cout << "cannot click this btn" << endl;
@@ -218,7 +222,10 @@ void MainWindow::movePiece(int clicked_piece, int init_piece){
 }
 }
 
-
+void MainWindow::gameOver(){
+    Exitscreen * exitscreen = new Exitscreen(this, gamemanager.getWinner());
+    exitscreen->show();
+}
 
 void MainWindow::on_throwButton_clicked()
 {
@@ -295,38 +302,5 @@ void MainWindow::on_testButton_clicked()
     else {
         cout << "cannot throw yut" << endl;
     }
-}
-
-void MainWindow::on_Location0_clicked()
-{
-
-    ui->gridLayout->itemAtPosition(gamemanager.getTurn(),gamemanager.getBoardPiece(0)-1)->widget()->hide();
-}
-
-void MainWindow::showTurn()
-{
-    switch(gamemanager.getTurn()){
-    case 0:
-        ui->label_turn->setStyleSheet("border-image: url(:red.png);");
-        break;
-    case 1:
-        ui->label_turn->setStyleSheet("border-image: url(:orange.png);");
-        break;
-    case 2:
-        ui->label_turn->setStyleSheet("border-image: url(:green.png);");
-        break;
-    case 3:
-        ui->label_turn->setStyleSheet("border-image: url(:blue.png);");
-        break;
-    }
-}
-
-void MainWindow::showScore()
-{
-
-    ui->label_score1->setNum(gamemanager.getBoardStatus(29)[0]);
-    ui->label_score2->setNum(gamemanager.getBoardStatus(29)[1]);
-    ui->label_score3->setNum(gamemanager.getBoardStatus(29)[2]);
-    ui->label_score4->setNum(gamemanager.getBoardStatus(29)[3]);
 }
 

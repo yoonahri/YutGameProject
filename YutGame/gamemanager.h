@@ -16,6 +16,7 @@ private:
     int dest_board;
     bool init_board_clickable;
     bool dest_board_clickable;
+    int winner;
     vector<vector<vector<int>>> movable_pos;
     queue<int> result_of_yuts;
     Board board;
@@ -39,6 +40,7 @@ public:
     int getTurn();
     int getBoardPiece(int);
     vector<int> getBoardStatus(int);
+    int getWinner();
 };
 
 #endif // GAMEMANAGER_H

@@ -26,6 +26,7 @@ CONFIG += c++11
 
 SOURCES += \
         board.cpp \
+        exitscreen.cpp \
         firstscreen.cpp \
         gamemanager.cpp \
         main.cpp \
@@ -33,11 +34,13 @@ SOURCES += \
 
 HEADERS += \
         board.h \
+        exitscreen.h \
         firstscreen.h \
         gamemanager.h \
         mainwindow.h
 
 FORMS += \
+        exitscreen.ui \
         firstscreen.ui \
         mainwindow.ui
 

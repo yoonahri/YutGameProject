@@ -44,6 +44,7 @@ void GameManager::setGameCondition(int player, int piece){
     this->isThrowPossible = true;
     this->init_board_clickable = false;
     this->dest_board_clickable = false;
+    this->winner = -1;
 }
 
 void GameManager::turnChanger(){
@@ -87,10 +88,11 @@ void GameManager::setDestBoard(){
             isThrowPossible = true;
             board.isKilledDone();
         }
-//        else if(board.gameOver() > -1){
-//            cout << "game over" << endl;
+        else if(board.gameOver() > -1){
+            cout << "game over" << endl;
             //게임 종료 작업
-//        }
+            winner = board.gameOver();
+        }
         else if(!result_of_yuts.empty()){
             cout << "click init_board again" << endl;
             isThrowPossible = false; //?
@@ -207,4 +209,8 @@ int GameManager::getBoardPiece(int clicked){
 
 vector<int> GameManager::getBoardStatus(int clicked){
     return board.getBoardStatus()[clicked];
+}
+
+int GameManager::getWinner(){
+    return winner;
 }

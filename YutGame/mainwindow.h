@@ -24,6 +24,8 @@ public:
     void movePiece(int, int);
     void showTurn();
     void showScore();
+    void gameOver();
+
     ~MainWindow();
 
 private slots:
