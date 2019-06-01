@@ -40,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent) :
     buttonList.push_back(ui->Location29);
     buttonList.push_back(ui->Locationgoal);
     ui->label_turn->setStyleSheet("border-image: url(:red.png);");
-    ui->label_3->hide();
+    ui->label_throw_again->hide();
     getBoardLocationNum();
 
 }
@@ -51,7 +51,16 @@ void MainWindow::setGameManager(int player, int piece){
     this->gamemanager.setGameCondition(player, piece);
 }
 
+void MainWindow :: createScoreBoard(){
+    for(int i =0 ; i<8; i++){
+        ui->horizontalLayout_score->itemAt(i)->widget()->hide();
+    }
+    for(int i= 0 ; i <player_num*2;i++){
+        ui->horizontalLayout_score->itemAt(i)->widget()->show();
+    }
+}
 void MainWindow::createPiece(){
+
     for(int i = 0; i<4; i++){
         for(int j = 0; j<5; j++){
             ui->gridLayout->itemAtPosition(i, j)->widget()->hide();
@@ -93,6 +102,7 @@ void MainWindow::getBoardLocationNum(){
                 this->movePiece(i, this->init_board);
                 this->gamemanager.setDestBoard();
                 this->showTurn();
+                this->showScore();
 
             }
             else {
@@ -186,7 +196,7 @@ void MainWindow::movePiece(int clicked_piece, int init_piece){
 
         for(size_t i = 0 ; i < gamemanager.getBoardStatus(clicked_piece).size() ; i++ ){
             if(gamemanager.getBoardStatus(clicked_piece)[i] != 0 && gamemanager.getTurn() != i){
-                ui->label_3->show();
+                ui->label_throw_again->show();
                 ui->gridLayout->itemAtPosition(i, (gamemanager.getBoardStatus(clicked_piece)[i]+gamemanager.getBoardStatus(0)[i])-1)->widget()->show();
             }
 
@@ -205,28 +215,28 @@ void MainWindow::on_throwButton_clicked()
 
         switch (this->gamemanager.getBackYutNum()) {
         case 0:
-            ui->label_3->hide();
+            ui->label_throw_again->hide();
             ui->label->setStyleSheet("border-image: url(:pig1.png);");
             break;
         case 1:
-            ui->label_3->hide();
+            ui->label_throw_again->hide();
             ui->label->setStyleSheet("border-image: url(:pig.png);");
             break;
         case 2:
-            ui->label_3->hide();
+            ui->label_throw_again->hide();
             ui->label->setStyleSheet("border-image: url(:dog.png);");
             break;
         case 3:
-            ui->label_3->hide();
+            ui->label_throw_again->hide();
             ui->label->setStyleSheet("border-image: url(:sheep.png);");
             break;
         case 4:
             ui->label->setStyleSheet("border-image: url(:cow.png);");
-            ui->label_3->show();
+            ui->label_throw_again->show();
             break;
         case 5:
             ui->label->setStyleSheet("border-image: url(:horse.png);");
-            ui->label_3->show();
+            ui->label_throw_again->show();
             break;
         }
 
@@ -245,22 +255,28 @@ void MainWindow::on_testButton_clicked()
 
         switch (this->gamemanager.getYutNum()) {
         case 0:
+            ui->label_throw_again->hide();
             ui->label->setStyleSheet("border-image: url(:pig1.png);");
             break;
         case 1:
+            ui->label_throw_again->hide();
             ui->label->setStyleSheet("border-image: url(:pig.png);");
             break;
         case 2:
+            ui->label_throw_again->hide();
             ui->label->setStyleSheet("border-image: url(:dog.png);");
             break;
         case 3:
+            ui->label_throw_again->hide();
             ui->label->setStyleSheet("border-image: url(:sheep.png);");
             break;
         case 4:
             ui->label->setStyleSheet("border-image: url(:cow.png);");
+            ui->label_throw_again->show();
             break;
         case 5:
             ui->label->setStyleSheet("border-image: url(:horse.png);");
+            ui->label_throw_again->show();
             break;
         }
     }
@@ -271,6 +287,7 @@ void MainWindow::on_testButton_clicked()
 
 void MainWindow::on_Location0_clicked()
 {
+
     ui->gridLayout->itemAtPosition(gamemanager.getTurn(),gamemanager.getBoardPiece(0)-1)->widget()->hide();
 }
 
@@ -292,4 +309,12 @@ void MainWindow::showTurn()
     }
 }
 
+void MainWindow::showScore()
+{
+
+    ui->label_score1->setNum(gamemanager.getBoardStatus(29)[0]);
+    ui->label_score2->setNum(gamemanager.getBoardStatus(29)[1]);
+    ui->label_score3->setNum(gamemanager.getBoardStatus(29)[2]);
+    ui->label_score4->setNum(gamemanager.getBoardStatus(29)[3]);
+}
 

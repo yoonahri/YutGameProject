@@ -17,12 +17,13 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     void setGameManager(int, int);
+    void createScoreBoard();
     void createPiece();
     void getBoardLocationNum();
     void highlightMovablePos(int, int, bool);
     void movePiece(int, int);
     void showTurn();
-
+    void showScore();
     ~MainWindow();
 
 private slots:

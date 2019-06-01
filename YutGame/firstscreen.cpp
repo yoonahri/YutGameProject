@@ -21,6 +21,7 @@ void FirstScreen::on_pushButton_start_clicked()
     MainWindow * mainwindow = new MainWindow(this);
     mainwindow->setGameManager(player_num, piece_num);
     mainwindow->createPiece();
+    mainwindow->createScoreBoard();
     mainwindow->show();
 }
 
