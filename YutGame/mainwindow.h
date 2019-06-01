@@ -21,6 +21,7 @@ public:
     void getBoardLocationNum();
     void highlightMovablePos(int, int, bool);
     void movePiece(int, int);
+    void showTurn();
 
     ~MainWindow();
 
@@ -28,6 +29,8 @@ private slots:
     void on_throwButton_clicked();
 
     void on_testButton_clicked();
+
+    void on_Location0_clicked();
 
 private:
     Ui::MainWindow *ui;
