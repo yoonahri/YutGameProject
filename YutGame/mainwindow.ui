@@ -3174,7 +3174,7 @@ background-repeat: none;
      <string/>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>1130</x>
@@ -3230,6 +3230,34 @@ background-repeat: none;
      </item>
     </layout>
    </widget>
+   <widget class="QPushButton" name="Locationgoal">
+    <property name="geometry">
+     <rect>
+      <x>1140</x>
+      <y>940</y>
+      <width>171</width>
+      <height>171</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#Locationgoal {
+background-color: transparent;
+background: none;
+border: none;
+background-repeat: none;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <zorder>layoutWidget</zorder>
    <zorder>line_15</zorder>
    <zorder>line_13</zorder>
    <zorder>line_14</zorder>
@@ -3283,7 +3311,7 @@ background-repeat: none;
    <zorder>gridLayoutWidget</zorder>
    <zorder>gridLayoutWidget_2</zorder>
    <zorder>label</zorder>
-   <zorder>testButton</zorder>
+   <zorder>Locationgoal</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

@@ -33,10 +33,12 @@ public:
     void setDestBoard();
     bool getInitBoardClickable(int);
     bool getDestBoardClickable(int);
+    bool isMovablePos(int, int, int);
     void throwYut();
     void testThrowYut(int);
     vector<int> getMovablePos(int, int);
     int getYutNum();
+    int getBackYutNum();
     int getTurn();
     int getBoardPiece(int);
     vector<int> getBoardStatus(int);

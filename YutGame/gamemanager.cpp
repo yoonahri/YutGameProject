@@ -121,7 +121,7 @@ bool GameManager::getInitBoardClickable(int clicked){
 
 bool GameManager::getDestBoardClickable(int clicked){
     this->dest_board = clicked;
-    if(this->gameevent.IsMovablePos(init_board, result_of_yuts.front(), dest_board)){
+    if(this->isMovablePos(init_board, result_of_yuts.front(), dest_board)){
         cout << this->gameevent.IsMovablePos(init_board, result_of_yuts.front(), dest_board) << endl;
         dest_board_clickable = true;
     }
@@ -153,6 +153,20 @@ void GameManager::throwYut(){
     }
 }
 
+bool GameManager::isMovablePos(int num_of_board_init, int num_of_yut, int num_of_board_des){
+    for(auto m = this->movable_pos[num_of_board_init][num_of_yut].begin()
+        ; m != movable_pos[num_of_board_init][num_of_yut].end() ; m++ ){
+        if(*m == num_of_board_des){
+            return true;
+        }
+//        else{
+//            return false;
+//        }
+    }
+    return false;
+}
+
+
 void GameManager::testThrowYut(int yut){
     cout << "turn : " << curr_turn << endl; //test
 
@@ -169,6 +183,11 @@ void GameManager::testThrowYut(int yut){
 vector<int> GameManager::getMovablePos(int num_of_board, int num_of_yut){
     return movable_pos[num_of_board][num_of_yut];
 }
+
+int GameManager::getBackYutNum(){
+    return result_of_yuts.back();
+}
+
 
 int GameManager::getYutNum(){
     return result_of_yuts.front();
