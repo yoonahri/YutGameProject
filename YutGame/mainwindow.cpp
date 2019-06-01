@@ -111,7 +111,6 @@ void MainWindow::getBoardLocationNum(){
                 this->showTurn();
                 this->showScore();
 
-
                 if(gamemanager.getWinner() >= 0){
                     gameOver();
                 }
@@ -328,11 +327,20 @@ void MainWindow::showTurn()
     }
 }
 
-void MainWindow::showScore()
+void MainWindow::showScore() //error
 {
+    QVector<QLabel *> score_label_list;
+    score_label_list.push_back(ui->label_score1);
+    score_label_list.push_back(ui->label_score2);
+    score_label_list.push_back(ui->label_score3);
+    score_label_list.push_back(ui->label_score4);
 
-    ui->label_score1->setNum(gamemanager.getBoardStatus(29)[0]);
-    ui->label_score2->setNum(gamemanager.getBoardStatus(29)[1]);
-    ui->label_score3->setNum(gamemanager.getBoardStatus(29)[2]);
-    ui->label_score4->setNum(gamemanager.getBoardStatus(29)[3]);
+    for(int i = 0 ; i < gamemanager.getBoardStatus(29).size() ; i++ ){
+        score_label_list[i]->setNum(gamemanager.getBoardStatus(29)[i]);
+    }
+
+//    ui->label_score1->setNum(gamemanager.getBoardStatus(29)[0]);
+//    ui->label_score2->setNum(gamemanager.getBoardStatus(29)[1]);
+//    ui->label_score3->setNum(gamemanager.getBoardStatus(29)[2]);
+//    ui->label_score4->setNum(gamemanager.getBoardStatus(29)[3]);
 }
