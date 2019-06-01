@@ -304,3 +304,35 @@ void MainWindow::on_testButton_clicked()
     }
 }
 
+void MainWindow::on_Location0_clicked()
+{
+
+    ui->gridLayout->itemAtPosition(gamemanager.getTurn(),gamemanager.getBoardPiece(0)-1)->widget()->hide();
+}
+
+void MainWindow::showTurn()
+{
+    switch(gamemanager.getTurn()){
+    case 0:
+        ui->label_turn->setStyleSheet("border-image: url(:red.png);");
+        break;
+    case 1:
+        ui->label_turn->setStyleSheet("border-image: url(:orange.png);");
+        break;
+    case 2:
+        ui->label_turn->setStyleSheet("border-image: url(:green.png);");
+        break;
+    case 3:
+        ui->label_turn->setStyleSheet("border-image: url(:blue.png);");
+        break;
+    }
+}
+
+void MainWindow::showScore()
+{
+
+    ui->label_score1->setNum(gamemanager.getBoardStatus(29)[0]);
+    ui->label_score2->setNum(gamemanager.getBoardStatus(29)[1]);
+    ui->label_score3->setNum(gamemanager.getBoardStatus(29)[2]);
+    ui->label_score4->setNum(gamemanager.getBoardStatus(29)[3]);
+}
