@@ -125,14 +125,14 @@ bool GameManager::getInitBoardClickable(int clicked){
 bool GameManager::getDestBoardClickable(int clicked){
     cout<<"getDestBoardClickable"<<endl;
     this->dest_board = clicked;
-    if(!result_of_yuts.empty()){
+    if(!result_of_yuts.empty() && (init_board != dest_board)){
         if(this->isMovablePos(init_board, result_of_yuts.front(), dest_board)){
             cout << this->isMovablePos(init_board, result_of_yuts.front(), dest_board) << endl;
             dest_board_clickable = true;
         }
     }
     else{
-        dest_board_clickable = false;
+         dest_board_clickable = false;
     }
     return this->dest_board_clickable;
 }
