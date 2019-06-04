@@ -307,6 +307,7 @@ void MainWindow::on_Location0_clicked()
 {
 
     ui->gridLayout->itemAtPosition(gamemanager.getTurn(),gamemanager.getBoardPiece(0)-1)->widget()->hide();
+
 }
 
 void MainWindow::showTurn()
