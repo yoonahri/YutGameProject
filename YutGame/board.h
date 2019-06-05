@@ -16,7 +16,7 @@ private:
     size_t piece_num;
     vector<vector<vector<int>>> movable_pos;
 //    bool isKilled;
-    bool isEmpty;
+//    bool isEmpty;
     int curr_turn;
     size_t init_board;
     size_t dest_board;
