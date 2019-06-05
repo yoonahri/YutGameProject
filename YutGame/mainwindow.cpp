@@ -85,35 +85,43 @@ void MainWindow::getBoardLocationNum(){
     for (int i = 0; i < buttonList.size(); i++) {
         QPushButton* button = buttonList[i];
         connect(button, &QPushButton::clicked, [this, button, i](){
-            if(this->gamemanager.getInitBoardClickable(i)){
+            cout<<"gamestate : "<<gamemanager.getGameState()<<endl;
+            if(this->gamemanager.getGameState() == INIT_MOVE){
                 this->gamemanager.setInitBoard(i);
-                this->highlightMovablePos(this->gamemanager.getYutNum(), i, true);
-                this->init_board = i;
                 buttonList[29]->setText("");
+                buttonList[29]->setStyleSheet("border-image: none");
+                buttonList[29]->setStyleSheet("background: transparent");
+                this->highlightMovablePos(this->gamemanager.getYutNum(0), i, true);
+                this->init_board = i;
                 button->setText("");
-                if(i == 0 || i == 5 || i == 10 || i == 15 || i == 22){
-                    button->setStyleSheet("border-image: url(:doublecircle.png);");
-                }
-                else{
-                    button->setStyleSheet("border-image: url(:circle.png);");
+                if(this->gamemanager.getBoardPiece(i) != 0){
+                    if(i == 0 || i == 5 || i == 10 || i == 15 || i == 22){
+                        button->setStyleSheet("border-image: url(:doublecircle.png);");
+                    }
+                    else{
+                        button->setStyleSheet("border-image: url(:circle.png);");
+                    }
                 }
             }
-            else if(this->gamemanager.getDestBoardClickable(i)){
+            else if(this->gamemanager.getGameState() == DEST_MOVE){
                 if(i != 29){
-                this->highlightMovablePos(this->gamemanager.getYutNum(), this->init_board, false);
-                this->movePiece(i, this->init_board);
+                    //this->highlightMovablePos(this->gamemanager.getYutNum(), this->init_board, false);
+                    this->movePiece(i, this->init_board);
                 }
                 else{
                     button->setText("goal in!");
 
                 }
-                this->gamemanager.setDestBoard();
+                this->gamemanager.setDestBoard(i);
                 this->showTurn();
                 this->showScore();
 
                 if(gamemanager.getWinner() >= 0){
                     gameOver();
                 }
+            }
+            else if(this->gamemanager.getGameState() == THROW) {
+                cout << "throw yut first" << endl;
             }
             else {
                 cout << "cannot click this btn" << endl;
@@ -125,11 +133,12 @@ void MainWindow::getBoardLocationNum(){
 void MainWindow::highlightMovablePos(int num_of_yut, int clicked_board, bool visible) {
 
     if(visible){
-        for(size_t m = 0 ; m < gamemanager.getMovablePos(clicked_board,num_of_yut).size() ; m++){
-            buttonList[gamemanager.getMovablePos(clicked_board,num_of_yut)[m]]->setText("");
-            buttonList[gamemanager.getMovablePos(clicked_board,num_of_yut)[m]]->setStyleSheet("border-image: url(:highlightcircle.png);");
+        if(this->gamemanager.getBoardPiece(clicked_board) != 0){
+            for(size_t m = 0 ; m < gamemanager.getMovablePos(clicked_board,num_of_yut).size() ; m++){
+                buttonList[gamemanager.getMovablePos(clicked_board,num_of_yut)[m]]->setText("");
+                buttonList[gamemanager.getMovablePos(clicked_board,num_of_yut)[m]]->setStyleSheet("border-image: url(:highlightcircle.png);");
+            }
         }
-
     }
 
     else{
@@ -181,44 +190,52 @@ void MainWindow::highlightMovablePos(int num_of_yut, int clicked_board, bool vis
 
 void MainWindow::movePiece(int clicked_piece, int init_piece){
 
-    switch(gamemanager.getTurn()){
-    case 0:
-        buttonList[clicked_piece]->setStyleSheet("border-image: url(:red.png);");
-        break;
-    case 1:
-        buttonList[clicked_piece]->setStyleSheet("border-image: url(:orange.png);");
-        break;
-    case 2:
-        buttonList[clicked_piece]->setStyleSheet("border-image: url(:green.png);");
-        break;
-    case 3:
-        buttonList[clicked_piece]->setStyleSheet("border-image: url(:blue.png);");
-        break;
-    }
-    if(init_piece != 0){
-
-        if(gamemanager.getBoardPiece(init_piece) > 1){
-            buttonList[clicked_piece]->setText(QString::number(this->gamemanager.getBoardPiece(init_piece)));
-        }
-    }
-
-    if(gamemanager.getBoardPiece(clicked_piece) >=1){
-
-        if(init_piece == 0){
-            buttonList[clicked_piece]->setText(QString::number(1 + this->gamemanager.getBoardPiece(clicked_piece)));
-        }
-        else{
-            buttonList[clicked_piece]->setText(QString::number(this->gamemanager.getBoardPiece(init_piece)
-                                                               + this->gamemanager.getBoardPiece(clicked_piece)));
-        }
-    }
-
-        for(size_t i = 0 ; i < gamemanager.getBoardStatus(clicked_piece).size() ; i++ ){
-            if(gamemanager.getBoardStatus(clicked_piece)[i] != 0 && gamemanager.getTurn() != i){
-                ui->label_throw_again->show();
-                ui->gridLayout->itemAtPosition(i, (gamemanager.getBoardStatus(clicked_piece)[i]+gamemanager.getBoardStatus(0)[i])-1)->widget()->show();
+    if(init_piece != clicked_piece){
+        if(this->gamemanager.isMovablePos(init_piece, gamemanager.getYutNum(0), clicked_piece)){
+            highlightMovablePos(this->gamemanager.getYutNum(0), this->init_board, false);
+            switch(gamemanager.getTurn()){
+            case 0:
+                buttonList[clicked_piece]->setStyleSheet("border-image: url(:red.png);");
+                break;
+            case 1:
+                buttonList[clicked_piece]->setStyleSheet("border-image: url(:orange.png);");
+                break;
+            case 2:
+                buttonList[clicked_piece]->setStyleSheet("border-image: url(:green.png);");
+                break;
+            case 3:
+                buttonList[clicked_piece]->setStyleSheet("border-image: url(:blue.png);");
+                break;
             }
-}
+            if(init_piece != 0){
+
+                if(gamemanager.getBoardPiece(init_piece) > 1){
+                    buttonList[clicked_piece]->setText(QString::number(this->gamemanager.getBoardPiece(init_piece)));
+                }
+                else{
+                    buttonList[clicked_piece]->setText("");
+                }
+            }
+
+            if(gamemanager.getBoardPiece(clicked_piece) >=1){
+
+                if(init_piece == 0){
+                    buttonList[clicked_piece]->setText(QString::number(1 + this->gamemanager.getBoardPiece(clicked_piece)));
+                }
+                else{
+                    buttonList[clicked_piece]->setText(QString::number(this->gamemanager.getBoardPiece(init_piece)
+                                                                       + this->gamemanager.getBoardPiece(clicked_piece)));
+                }
+            }
+
+            for(size_t i = 0 ; i < gamemanager.getBoardStatus(clicked_piece).size() ; i++ ){
+                if(gamemanager.getBoardStatus(clicked_piece)[i] != 0 && gamemanager.getTurn() != i){
+                    ui->label_throw_again->show();
+                    ui->gridLayout->itemAtPosition(i, (gamemanager.getBoardStatus(clicked_piece)[i]+gamemanager.getBoardStatus(0)[i])-1)->widget()->show();
+                }
+            }
+        }
+    }
 }
 
 void MainWindow::gameOver(){
@@ -228,10 +245,10 @@ void MainWindow::gameOver(){
 
 void MainWindow::on_throwButton_clicked()
 {
-    if(gamemanager.getIsThrowPossible()){
+    if(gamemanager.getGameState() == THROW){
         this->gamemanager.throwYut();
 
-        switch (this->gamemanager.getBackYutNum()) {
+        switch (this->gamemanager.getYutNum(1)) {
         case 0:
             ui->label_throw_again->hide();
             ui->label->setStyleSheet("border-image: url(:pig1.png);");
@@ -267,11 +284,11 @@ void MainWindow::on_throwButton_clicked()
 
 void MainWindow::on_testButton_clicked()
 {
-    if(gamemanager.getIsThrowPossible()){
+    if(gamemanager.getGameState() == THROW){
 
         gamemanager.testThrowYut(this->ui->testYutBox->currentIndex());
 
-        switch (this->gamemanager.getBackYutNum()) {
+        switch (this->gamemanager.getYutNum(1)) {
         case 0:
             ui->label_throw_again->hide();
             ui->label->setStyleSheet("border-image: url(:pig1.png);");
@@ -305,8 +322,9 @@ void MainWindow::on_testButton_clicked()
 
 void MainWindow::on_Location0_clicked()
 {
-
-    ui->gridLayout->itemAtPosition(gamemanager.getTurn(),gamemanager.getBoardPiece(0)-1)->widget()->hide();
+    if( gamemanager.getGameState() == INIT_MOVE && gamemanager.getBoardPiece(0) != 0){
+        ui->gridLayout->itemAtPosition(gamemanager.getTurn(),gamemanager.getBoardPiece(0)-1)->widget()->hide();
+    }
 
 }
 
@@ -328,7 +346,7 @@ void MainWindow::showTurn()
     }
 }
 
-void MainWindow::showScore() //error
+void MainWindow::showScore()
 {
     QVector<QLabel *> score_label_list;
     score_label_list.push_back(ui->label_score1);
@@ -339,9 +357,4 @@ void MainWindow::showScore() //error
     for(int i = 0 ; i < gamemanager.getBoardStatus(29).size() ; i++ ){
         score_label_list[i]->setNum(gamemanager.getBoardStatus(29)[i]);
     }
-
-//    ui->label_score1->setNum(gamemanager.getBoardStatus(29)[0]);
-//    ui->label_score2->setNum(gamemanager.getBoardStatus(29)[1]);
-//    ui->label_score3->setNum(gamemanager.getBoardStatus(29)[2]);
-//    ui->label_score4->setNum(gamemanager.getBoardStatus(29)[3]);
 }
