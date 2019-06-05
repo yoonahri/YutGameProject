@@ -87,7 +87,7 @@ void MainWindow::getBoardLocationNum(){
         connect(button, &QPushButton::clicked, [this, button, i](){
             cout<<"gamestate : "<<gamemanager.getGameState()<<endl;
             if(this->gamemanager.getGameState() == INIT_MOVE){
-                this->gamemanager.setInitBoard(i);
+                this->gamemanager.setBoard(i);
                 buttonList[29]->setText("");
                 buttonList[29]->setStyleSheet("border-image: none");
                 buttonList[29]->setStyleSheet("background: transparent");
@@ -109,10 +109,11 @@ void MainWindow::getBoardLocationNum(){
                     this->movePiece(i, this->init_board);
                 }
                 else{
+                    this->highlightMovablePos(this->gamemanager.getYutNum(0), this->init_board, false);
                     button->setText("goal in!");
-
                 }
-                this->gamemanager.setDestBoard(i);
+
+                this->gamemanager.setBoard(i);
                 this->showTurn();
                 this->showScore();
 

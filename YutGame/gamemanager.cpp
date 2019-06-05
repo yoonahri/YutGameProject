@@ -24,16 +24,18 @@ void GameManager::setBoard(int clicked){
         }
     }
     else if(gamestate == DEST_MOVE){
-        if(!Yut.isEmpty()){
-            if(board.setDestBoard(Yut.getYutNum(0), clicked)){
-                Yut.popYut();
+        if(!yut_manager.isEmpty()){
+            if(board.setDestBoard(yut_manager.getYutNum(0), clicked)){
+                yut_manager.popYut();
 
-                if(board.move() == GROUPING || board.move() == MOVE){
-                    if(Yut.isEmpty()){
+                int move_state = board.move();
+
+                if(move_state == GROUPING || move_state == MOVE){
+                    if(yut_manager.isEmpty()){
                         gamestate = THROW;
                         board.changeTurn();
                     }
-                    else if (!Yut.isEmpty()) {
+                    else if (!yut_manager.isEmpty()) {
                         gamestate = INIT_MOVE;
                     }
                     else{
@@ -41,8 +43,14 @@ void GameManager::setBoard(int clicked){
                     }
                 }
 
-                else if(board.move() == KILL){
+                else if(move_state == KILL){
                     gamestate = THROW;
+                }
+
+                else if(board.gameOver() > -1){
+                    cout << "game over" << endl;
+                    //게임 종료 작업
+                    winner = board.gameOver();
                 }
             }
         }
@@ -134,8 +142,8 @@ void GameManager::throwYut(){
     cout << "turn : " << board.getTurn() << endl;
 
     if(gamestate == THROW){
-        Yut.throwYut();
-        if(Yut.getYutNum(1) < 4){
+        yut_manager.throwYut();
+        if(yut_manager.getYutNum(1) < 4){
             gamestate = INIT_MOVE;
         }
     }
@@ -157,23 +165,18 @@ void GameManager::testThrowYut(int yut){
     cout << "turn : "<< board.getTurn() << endl;
 
     if(gamestate == THROW){
-        Yut.testThrowYut(yut);
-        if(Yut.getYutNum(1) < 4){
+        yut_manager.testThrowYut(yut);
+        if(yut_manager.getYutNum(1) < 4){
             gamestate = INIT_MOVE;
         }
     }
 }
 
-/*
+
 int GameManager::getYutNum(int front_or_back){
-    if(front_or_back == 0){
-    return result_of_yuts.front();
-    }
-    else{
-        return result_of_yuts.back();
-    }
+    return yut_manager.getYutNum(front_or_back);
 }
-*/
+
 
 int GameManager::getBoardPiece(int clicked){
     return board.getBoardStatus(clicked)[board.getTurn()];

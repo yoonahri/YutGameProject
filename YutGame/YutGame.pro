@@ -30,8 +30,8 @@ SOURCES += \
         firstscreen.cpp \
         gamemanager.cpp \
         main.cpp \
-        showstatus.cpp
-        yutmanager.cpp
+        showstatus.cpp \
+        yutmanager.cpp \
         mainwindow.cpp \
 
 HEADERS += \
@@ -39,15 +39,15 @@ HEADERS += \
         exitscreen.h \
         firstscreen.h \
         gamemanager.h \
-        showstatus.h
+        showstatus.h \
         gamestate.h \
         mainwindow.h \
-        yutmanager.h
+        yutmanager.h \
 
 FORMS += \
         exitscreen.ui \
         firstscreen.ui \
-        mainwindow.ui
+        mainwindow.ui \
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

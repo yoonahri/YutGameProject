@@ -20,7 +20,7 @@ private:
     int gamestate;
     //queue<int> result_of_yuts;
     Board board;
-    YutManager Yut;
+    YutManager yut_manager;
 
 public:
     GameManager();
@@ -34,7 +34,7 @@ public:
     void throwYut();
     void testThrowYut(int);
     vector<int> getMovablePos(int, int);
-    //int getYutNum(int);
+    int getYutNum(int);
     int getBoardPiece(int);
     vector<int> getBoardStatus(int);
     int getWinner();
