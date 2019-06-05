@@ -114,7 +114,7 @@ void Board::move(size_t turn, size_t init_board, size_t clicked_board){
             board_status[clicked_board][turn] += board_status[init_board][turn];
         }
         else { //Á×ÀÌ´Â °æ¿ì
-            if(clicked_board != 0){
+            if(clicked_board != 0 && clicked_board != 29){ //Ãâ¹ß Ä­ & µµÂø Ä­
                 board_status[0][searchClickedBoardTurn] += board_status[clicked_board][searchClickedBoardTurn];
                 board_status[clicked_board][searchClickedBoardTurn] = 0;
                 board_status[clicked_board][turn] += board_status[init_board][turn];
