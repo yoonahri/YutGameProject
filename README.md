@@ -1,6 +1,9 @@
 # YutGameProject
  develop yut game for software engineering project
 
+ ![screenshot](https://user-images.githubusercontent.com/33852497/58976427-60fcc080-8802-11e9-8c8d-3252fdcaf86b.JPG)
+
+
 ## game explanation
 + choose number of players and pieces.
 + click the throwing yut button and move your pieces.

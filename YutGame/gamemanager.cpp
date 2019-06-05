@@ -47,7 +47,7 @@ void GameManager::setBoard(int clicked){
                     gamestate = THROW;
                 }
 
-                else if(board.gameOver() > -1){
+                if(board.gameOver() > -1){
                     cout << "game over" << endl;
                     //게임 종료 작업
                     winner = board.gameOver();
