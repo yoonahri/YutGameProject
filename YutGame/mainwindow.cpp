@@ -88,13 +88,12 @@ void MainWindow::getBoardLocationNum(){
             cout<<"gamestate : "<<gamemanager.getGameState()<<endl;
             if(this->gamemanager.getGameState() == INIT_MOVE){
                 this->gamemanager.setBoard(i);
-                buttonList[29]->setText("");
                 buttonList[29]->setStyleSheet("border-image: none");
                 buttonList[29]->setStyleSheet("background: transparent");
                 this->highlightMovablePos(this->gamemanager.getYutNum(0), i, true);
                 this->init_board = i;
                 button->setText("");
-                if(this->gamemanager.getBoardPiece(i) != 0){
+                if(this->gamemanager.getBoardPiece(i) != 0 || i != 29){
                     if(i == 0 || i == 5 || i == 10 || i == 15 || i == 22){
                         button->setStyleSheet("border-image: url(:doublecircle.png);");
                     }
@@ -110,7 +109,8 @@ void MainWindow::getBoardLocationNum(){
                 }
                 else{
                     this->highlightMovablePos(this->gamemanager.getYutNum(0), this->init_board, false);
-                    button->setText("goal in!");
+                    button->setStyleSheet("border-image: url(:realgoalin.png);");
+                    //button->setText("goal in!");
                 }
 
                 this->gamemanager.setBoard(i);

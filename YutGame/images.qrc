@@ -22,5 +22,7 @@
         <file>firecracker.png</file>
         <file>arrow1.png</file>
         <file>arrow2.png</file>
+        <file>realgoalin.png</file>
+        <file>goalin.png</file>
     </qresource>
 </RCC>
