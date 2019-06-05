@@ -20,5 +20,7 @@
         <file>sheep2.png</file>
         <file>yut.png</file>
         <file>firecracker.png</file>
+        <file>arrow1.png</file>
+        <file>arrow2.png</file>
     </qresource>
 </RCC>

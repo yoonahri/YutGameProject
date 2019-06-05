@@ -30,7 +30,6 @@ SOURCES += \
         firstscreen.cpp \
         gamemanager.cpp \
         main.cpp \
-        showstatus.cpp \
         yutmanager.cpp \
         mainwindow.cpp \
 
@@ -39,7 +38,6 @@ HEADERS += \
         exitscreen.h \
         firstscreen.h \
         gamemanager.h \
-        showstatus.h \
         gamestate.h \
         mainwindow.h \
         yutmanager.h \

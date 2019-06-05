@@ -2315,6 +2315,50 @@ background-repeat: none;
      </item>
     </layout>
    </widget>
+   <widget class="QLabel" name="flow_1">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>210</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#flow_1 {
+background-color: transparent;
+border-image: url(:arrow1.png);
+background: none;
+border: none;
+background-repeat: none;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="flow_3">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>620</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#flow_3 {
+background-color: transparent;
+border-image: url(:arrow2.png);
+background: none;
+border: none;
+background-repeat: none;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
    <zorder>layoutWidget</zorder>
    <zorder>Location19</zorder>
    <zorder>Location18</zorder>
@@ -2358,6 +2402,8 @@ background-repeat: none;
    <zorder>line_25</zorder>
    <zorder>label_throw_again</zorder>
    <zorder>horizontalLayoutWidget</zorder>
+   <zorder>flow_1</zorder>
+   <zorder>flow_3</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
