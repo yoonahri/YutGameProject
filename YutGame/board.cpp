@@ -37,7 +37,7 @@ Board::Board(){
     for(size_t i = 0; i < 30; i++){
         board_status.push_back(vector<int>());
     }
-    this->isKilled = false;
+//    this->isKilled = false;
 }
 
 void Board::changeTurn(){
@@ -70,7 +70,28 @@ vector<int> Board::getBoardStatus(int init_board){
     return board_status[init_board];
 }
 
-void Board::move(size_t turn, size_t init_board, size_t clicked_board){
+bool Board::setInitBoard(size_t clicked){
+    if(board_status[clicked][curr_turn] != 0){
+        init_board = clicked;
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+bool Board::setDestBoard(int yutnum, size_t clicked){
+    if(init_board != clicked && isMovablePos(init_board, yutnum, clicked)){
+        dest_board = clicked;
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+int Board::move(){
+//void Board::move(size_t turn, size_t init_board, size_t clicked_board){
 
     /*
      * 말이 처음 위치에 있는지 구분해줄 필요가 있음,
@@ -83,48 +104,62 @@ void Board::move(size_t turn, size_t init_board, size_t clicked_board){
     size_t searchClickedBoardTurn = 99;
 
     for(size_t i = 0; i < player_num; i++){
-        if(board_status[clicked_board][i] != 0){
+        if(board_status[dest_board][i] != 0){
             searchClickedBoardTurn = i;
         }
     }
 
     if(init_board == 0){ //초기상태의 말 일때
-        if(searchClickedBoardTurn == turn){ //업는 경우
-            board_status[clicked_board][searchClickedBoardTurn] += 1;
+        if(searchClickedBoardTurn == curr_turn){ //업는 경우
+            board_status[dest_board][searchClickedBoardTurn] += 1;
+            board_status[init_board][curr_turn] -= 1;
+            return GROUPING;
         }
 
         else if(searchClickedBoardTurn == 99){ //빈 공간에 이동하는 경우
-            board_status[clicked_board][turn] = 1;
+            board_status[dest_board][curr_turn] = 1;
+            board_status[init_board][curr_turn] -= 1;
+            return MOVE;
         }
 
         else { //죽이는 경우
-            board_status[0][searchClickedBoardTurn] += board_status[clicked_board][searchClickedBoardTurn];
-            board_status[clicked_board][searchClickedBoardTurn] = 0;
-            board_status[clicked_board][turn] += 1;
-            this->isKilled = true;
+            board_status[0][searchClickedBoardTurn] += board_status[dest_board][searchClickedBoardTurn];
+            board_status[dest_board][searchClickedBoardTurn] = 0;
+            board_status[dest_board][curr_turn] += 1;
+            board_status[init_board][curr_turn] -= 1;
+            //this->isKilled = true;
+            return KILL;
         }
-        board_status[init_board][turn] -= 1;
+        //board_status[init_board][curr_turn] -= 1;
     }
 
     else{ //이미 이동했던 말 일때
-        if(searchClickedBoardTurn == turn){ //업는 경우
-            board_status[clicked_board][searchClickedBoardTurn] += board_status[init_board][turn];
+        if(searchClickedBoardTurn == curr_turn){ //업는 경우
+            board_status[dest_board][searchClickedBoardTurn] += board_status[init_board][curr_turn];
+            board_status[init_board][curr_turn] = 0;
+            return GROUPING;
         }
         else if(searchClickedBoardTurn == 99){ //빈 공간에 이동하는 경우
-            board_status[clicked_board][turn] += board_status[init_board][turn];
+            board_status[dest_board][curr_turn] += board_status[init_board][curr_turn];
+            board_status[init_board][curr_turn] = 0;
+            return MOVE;
         }
         else { //죽이는 경우
-            if(clicked_board != 0 && clicked_board != 29){ //출발 칸 & 도착 칸
-                board_status[0][searchClickedBoardTurn] += board_status[clicked_board][searchClickedBoardTurn];
-                board_status[clicked_board][searchClickedBoardTurn] = 0;
-                board_status[clicked_board][turn] += board_status[init_board][turn];
-                this->isKilled = true;
+            if(dest_board != 0 && dest_board != 29){ //출발 칸 & 도착 칸
+                board_status[0][searchClickedBoardTurn] += board_status[dest_board][searchClickedBoardTurn];
+                board_status[dest_board][searchClickedBoardTurn] = 0;
+                board_status[dest_board][curr_turn] += board_status[init_board][curr_turn];
+                board_status[init_board][curr_turn] = 0;
+                //this->isKilled = true;
+                return KILL;
             }
             else{
-                board_status[clicked_board][turn] += board_status[init_board][turn];
+                board_status[dest_board][curr_turn] += board_status[init_board][curr_turn];
+                board_status[init_board][curr_turn] = 0;
+                return MOVE;
             }
         }
-        board_status[init_board][turn] = 0;
+        //board_status[init_board][curr_turn] = 0;
     }
 
     //벡터 확인용 코드, 삭제 예정
@@ -150,6 +185,7 @@ bool Board::isMovablePos(int num_of_board_init, int num_of_yut, int num_of_board
     return false;
 }
 
+/*
 bool Board::isKillingEventOccured(){
     return isKilled;
 }
@@ -157,24 +193,15 @@ bool Board::isKillingEventOccured(){
 void Board::isKilledDone(){
     isKilled = false;
 }
+*/
 
 int Board::gameOver(){
-
     for(size_t i = 0; i < player_num; i++){
-        if(board_status[29][i] == piece_num){ //30...아니야...
+        if(board_status[29][i] == piece_num){
             return i;
         }
     }
     return -1;
-
-    /*
-    if(board_status[2][0] == 1){
-        return 1;
-    }
-    else{
-        return -1;
-    }
-    */
 }
 
 int Board::getTurn(){

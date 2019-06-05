@@ -2,7 +2,6 @@
 #include <QApplication>
 #include "gamemanager.h"
 #include "board.h"
-#include "gameevent.h"
 #include "firstscreen.h"
 #include <QDebug>
 

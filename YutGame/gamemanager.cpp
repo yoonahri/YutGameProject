@@ -8,7 +8,6 @@ void GameManager::setGameCondition(int player, int piece){
     this->num_of_player = player;
     this->num_of_piece = piece;
     this->board.setBoardStatus(player, piece);
-
     this->gamestate = THROW;
     this->winner = -1;
 }
@@ -17,6 +16,43 @@ int GameManager::getGameState(){
     return this->gamestate;
 }
 
+void GameManager::setBoard(int clicked){
+    if(gamestate == INIT_MOVE){
+        if(board.setInitBoard(clicked)){
+            //highlight 함
+            gamestate = DEST_MOVE;
+        }
+    }
+    else if(gamestate == DEST_MOVE){
+        if(!Yut.isEmpty()){
+            if(board.setDestBoard(Yut.getYutNum(0), clicked)){
+                Yut.popYut();
+
+                if(board.move() == GROUPING || board.move() == MOVE){
+                    if(Yut.isEmpty()){
+                        gamestate = THROW;
+                        board.changeTurn();
+                    }
+                    else if (!Yut.isEmpty()) {
+                        gamestate = INIT_MOVE;
+                    }
+                    else{
+                        cout << "error" << endl; //test용
+                    }
+                }
+
+                else if(board.move() == KILL){
+                    gamestate = THROW;
+                }
+            }
+        }
+    }
+    else{
+        cout << "can't click board" << endl;
+    }
+}
+
+/*
 void GameManager::setInitBoard(int clicked){
     this->init_board = clicked;
     if(board.getBoardStatus(clicked)[board.getTurn()] != 0){
@@ -27,7 +63,9 @@ void GameManager::setInitBoard(int clicked){
         this->init_board = 99; //클릭 불가능한 판넬
     }
 }
+*/
 
+/*
 void GameManager::setDestBoard(int clicked){
     this->dest_board = clicked;
 
@@ -40,6 +78,7 @@ void GameManager::setDestBoard(int clicked){
 
             result_of_yuts.pop();
             this->gamestate = WAIT;
+
 
             if(board.isKillingEventOccured())
             {
@@ -67,7 +106,9 @@ void GameManager::setDestBoard(int clicked){
         }
     }
 }
+*/
 
+/*
 void GameManager::throwYut(){
     cout << "turn : " << board.getTurn() << endl; //test
 
@@ -88,8 +129,20 @@ void GameManager::throwYut(){
         this->gamestate = INIT_MOVE;
     }
 }
+*/
+void GameManager::throwYut(){
+    cout << "turn : " << board.getTurn() << endl;
+
+    if(gamestate == THROW){
+        Yut.throwYut();
+        if(Yut.getYutNum(1) < 4){
+            gamestate = INIT_MOVE;
+        }
+    }
+}
 
 
+/*
 void GameManager::testThrowYut(int yut){
     cout << "turn : "<< board.getTurn() << endl; //test
     result_of_yuts.push(yut);
@@ -98,7 +151,20 @@ void GameManager::testThrowYut(int yut){
         this->gamestate = INIT_MOVE;
     }
 }
+*/
 
+void GameManager::testThrowYut(int yut){
+    cout << "turn : "<< board.getTurn() << endl;
+
+    if(gamestate == THROW){
+        Yut.testThrowYut(yut);
+        if(Yut.getYutNum(1) < 4){
+            gamestate = INIT_MOVE;
+        }
+    }
+}
+
+/*
 int GameManager::getYutNum(int front_or_back){
     if(front_or_back == 0){
     return result_of_yuts.front();
@@ -107,6 +173,7 @@ int GameManager::getYutNum(int front_or_back){
         return result_of_yuts.back();
     }
 }
+*/
 
 int GameManager::getBoardPiece(int clicked){
     return board.getBoardStatus(clicked)[board.getTurn()];
