@@ -122,9 +122,11 @@ void MainWindow::getBoardLocationNum(){
             }
             else if(this->gamemanager.getGameState() == THROW) {
                 cout << "throw yut first" << endl;
+                QMessageBox::information(this, "warning", "throw yut first!");
             }
             else {
                 cout << "cannot click this btn" << endl;
+                QMessageBox::information(this, "warning", "cannot click this button!");
             }
         });
     }
@@ -231,7 +233,12 @@ void MainWindow::movePiece(int clicked_piece, int init_piece){
             for(size_t i = 0 ; i < gamemanager.getBoardStatus(clicked_piece).size() ; i++ ){
                 if(gamemanager.getBoardStatus(clicked_piece)[i] != 0 && gamemanager.getTurn() != i){
                     ui->label_throw_again->show();
-                    ui->gridLayout->itemAtPosition(i, (gamemanager.getBoardStatus(clicked_piece)[i]+gamemanager.getBoardStatus(0)[i])-1)->widget()->show();
+                    if(gamemanager.getBoardStatus(clicked_piece)[i]==1)
+                        ui->gridLayout->itemAtPosition(i, (gamemanager.getBoardStatus(clicked_piece)[i]+gamemanager.getBoardStatus(0)[i])-1)->widget()->show();
+                    else if(gamemanager.getBoardStatus(clicked_piece)[i]>1)
+                        for(int j = 1 ; j<=gamemanager.getBoardStatus(clicked_piece)[i];j++){
+                            ui->gridLayout->itemAtPosition(i, (gamemanager.getBoardStatus(clicked_piece)[i]+gamemanager.getBoardStatus(0)[i])-j)->widget()->show();
+                        }
                 }
             }
         }
@@ -278,6 +285,7 @@ void MainWindow::on_throwButton_clicked()
     }
     else {
         cout << "cannot throw yut" << endl;
+        QMessageBox::information(this, "warning", "cannot throw yut!");
     }
 }
 
@@ -317,6 +325,7 @@ void MainWindow::on_testButton_clicked()
     }
     else {
         cout << "cannot throw yut" << endl;
+        QMessageBox::information(this, "warning", "cannot throw yut!");
     }
 }
 
@@ -358,3 +367,5 @@ void MainWindow::showScore()
         score_label_list[i]->setNum(gamemanager.getBoardStatus(29)[i]);
     }
 }
+
+

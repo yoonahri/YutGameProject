@@ -30,14 +30,16 @@ SOURCES += \
         firstscreen.cpp \
         gamemanager.cpp \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+        showstatus.cpp
 
 HEADERS += \
         board.h \
         exitscreen.h \
         firstscreen.h \
         gamemanager.h \
-        mainwindow.h
+        mainwindow.h \
+        showstatus.h
 
 FORMS += \
         exitscreen.ui \

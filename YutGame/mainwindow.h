@@ -6,6 +6,8 @@
 #include <QVector>
 #include <QPushButton>
 #include <QLabel>
+#include <QMessageBox>
+
 namespace Ui {
 class MainWindow;
 }
@@ -25,7 +27,6 @@ public:
     void showTurn();
     void showScore();
     void gameOver();
-
     ~MainWindow();
 
 private slots:
@@ -36,6 +37,7 @@ private slots:
     void on_Location0_clicked();
 
 private:
+    static MainWindow * pMainWindow;
     Ui::MainWindow *ui;
     int player_num;
     int piece_num;
