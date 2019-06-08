@@ -9,7 +9,6 @@ using namespace std;
 class YutManager
 {
 private:
-    static int probabilityOfYut[47];
     queue<int> result_of_yuts;
 
 public:

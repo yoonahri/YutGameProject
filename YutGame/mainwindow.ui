@@ -2359,6 +2359,48 @@ background-repeat: none;
      <string/>
     </property>
    </widget>
+   <widget class="QLabel" name="leftyut">
+    <property name="geometry">
+     <rect>
+      <x>983</x>
+      <y>879</y>
+      <width>271</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>981</x>
+      <y>550</y>
+      <width>61</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_yut" stretch="">
+     <property name="spacing">
+      <number>7</number>
+     </property>
+     <property name="sizeConstraint">
+      <enum>QLayout::SetFixedSize</enum>
+     </property>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>1080</x>
+      <y>870</y>
+      <width>301</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_yut"/>
+   </widget>
    <zorder>layoutWidget</zorder>
    <zorder>Location19</zorder>
    <zorder>Location18</zorder>
@@ -2404,6 +2446,9 @@ background-repeat: none;
    <zorder>horizontalLayoutWidget</zorder>
    <zorder>flow_1</zorder>
    <zorder>flow_3</zorder>
+   <zorder>leftyut</zorder>
+   <zorder>verticalLayoutWidget</zorder>
+   <zorder>horizontalLayoutWidget_2</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -2411,7 +2456,7 @@ background-repeat: none;
      <x>0</x>
      <y>0</y>
      <width>1452</width>
-     <height>17</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

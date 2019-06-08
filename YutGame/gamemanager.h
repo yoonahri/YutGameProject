@@ -39,7 +39,6 @@ public:
     vector<int> getBoardStatus(int);
     int getWinner();
     int getTurn();
-
 };
 
 #endif // GAMEMANAGER_H

@@ -110,14 +110,16 @@ void MainWindow::getBoardLocationNum(){
                 else{
                     for(size_t m = 0 ; m < gamemanager.getMovablePos(this->init_board,this->gamemanager.getYutNum(0)).size() ; m++){
                         if(gamemanager.getMovablePos(this->init_board,this->gamemanager.getYutNum(0))[m] == i){
+                            QLayoutItem *item = NULL;
+                            item = ui->horizontalLayout_yut->takeAt(0);
+                            delete item->widget();
                             this->highlightMovablePos(this->gamemanager.getYutNum(0), this->init_board, false);
                             button->setStyleSheet("border-image: url(:realgoalin.png);");
                         }
                     }
-
                 }
-
                 this->gamemanager.setBoard(i);
+
                 this->showTurn();
                 this->showScore();
 
@@ -206,6 +208,9 @@ void MainWindow::movePiece(int clicked_piece, int init_piece){
 
     if(init_piece != clicked_piece){
         if(this->gamemanager.isMovablePos(init_piece, gamemanager.getYutNum(0), clicked_piece)){
+            QLayoutItem *item = NULL;
+            item = ui->horizontalLayout_yut->takeAt(0);
+            delete item->widget();
             highlightMovablePos(this->gamemanager.getYutNum(0), this->init_board, false);
             switch(gamemanager.getTurn()){
             case 0:
@@ -222,24 +227,24 @@ void MainWindow::movePiece(int clicked_piece, int init_piece){
                 buttonList[clicked_piece]->setStyleSheet("border-image: url(:blue.png);");
                 break;
             }
-            if(init_piece != 0){
 
-                if(gamemanager.getBoardPiece(init_piece) > 1){
-                    buttonList[clicked_piece]->setText(QString::number(this->gamemanager.getBoardPiece(init_piece)));
+            if(init_piece != 0){
+                if(this->gamemanager.getBoardPiece(init_piece)
+                        + this->gamemanager.getBoardPiece(clicked_piece) >=2){
+                    buttonList[clicked_piece]->setText(QString::number(this->gamemanager.getBoardPiece(init_piece)
+                                                                       + this->gamemanager.getBoardPiece(clicked_piece)));
                 }
                 else{
                     buttonList[clicked_piece]->setText("");
                 }
             }
 
-            if(gamemanager.getBoardPiece(clicked_piece) >=1){
-
-                if(init_piece == 0){
+            else if(init_piece == 0){
+                if(1 + this->gamemanager.getBoardPiece(clicked_piece) >=2){
                     buttonList[clicked_piece]->setText(QString::number(1 + this->gamemanager.getBoardPiece(clicked_piece)));
                 }
                 else{
-                    buttonList[clicked_piece]->setText(QString::number(this->gamemanager.getBoardPiece(init_piece)
-                                                                       + this->gamemanager.getBoardPiece(clicked_piece)));
+                    buttonList[clicked_piece]->setText("");
                 }
             }
 
@@ -268,29 +273,44 @@ void MainWindow::on_throwButton_clicked()
     if(gamemanager.getGameState() == THROW){
         this->gamemanager.throwYut();
 
+        QString str = "";
+        QTextCodec * codec = QTextCodec::codecForName("eucKR");
+
         switch (this->gamemanager.getYutNum(1)) {
         case 0:
             ui->label_throw_again->hide();
             ui->label->setStyleSheet("border-image: url(:pig1.png);");
+            str = "<span style='font-size:18pt; font:¸¼Àº °íµñ; font:bold'>" + codec->toUnicode("»ªµµ") + "</span>";
+            ui->horizontalLayout_yut->addWidget(new QLabel(str,this));
             break;
         case 1:
             ui->label_throw_again->hide();
             ui->label->setStyleSheet("border-image: url(:pig.png);");
+            str = "<span style='font-size:18pt; font:¸¼Àº °íµñ; font:bold'>" + codec->toUnicode("µµ") + "</span>";
+            ui->horizontalLayout_yut->addWidget(new QLabel(str,this));
             break;
         case 2:
             ui->label_throw_again->hide();
             ui->label->setStyleSheet("border-image: url(:dog.png);");
+            str = "<span style='font-size:18pt; font:¸¼Àº °íµñ; font:bold'>" + codec->toUnicode("°³") + "</span>";
+            ui->horizontalLayout_yut->addWidget(new QLabel(str,this));
             break;
         case 3:
             ui->label_throw_again->hide();
             ui->label->setStyleSheet("border-image: url(:sheep.png);");
+            str = "<span style='font-size:18pt; font:¸¼Àº °íµñ; font:bold'>" + codec->toUnicode("°É") + "</span>";
+            ui->horizontalLayout_yut->addWidget(new QLabel(str,this));
             break;
         case 4:
             ui->label->setStyleSheet("border-image: url(:cow.png);");
+            str = "<span style='font-size:18pt; font:¸¼Àº °íµñ; font:bold'>" + codec->toUnicode("À·") + "</span>";
+            ui->horizontalLayout_yut->addWidget(new QLabel(str,this));
             ui->label_throw_again->show();
             break;
         case 5:
             ui->label->setStyleSheet("border-image: url(:horse.png);");
+            str = "<span style='font-size:18pt; font:¸¼Àº °íµñ; font:bold'>" + codec->toUnicode("¸ð") + "</span>";
+            ui->horizontalLayout_yut->addWidget(new QLabel(str,this));
             ui->label_throw_again->show();
             break;
         }
@@ -305,33 +325,50 @@ void MainWindow::on_throwButton_clicked()
 
 void MainWindow::on_testButton_clicked()
 {
+
+
     if(gamemanager.getGameState() == THROW){
 
         gamemanager.testThrowYut(this->ui->testYutBox->currentIndex());
+
+        QString str = "";
+        QTextCodec * codec = QTextCodec::codecForName("eucKR");
 
         switch (this->gamemanager.getYutNum(1)) {
         case 0:
             ui->label_throw_again->hide();
             ui->label->setStyleSheet("border-image: url(:pig1.png);");
+            str = "<span style='font-size:18pt; font:¸¼Àº °íµñ; font:bold'>" + codec->toUnicode("»ªµµ") + "</span>";
+            ui->horizontalLayout_yut->addWidget(new QLabel(str,this));
             break;
         case 1:
             ui->label_throw_again->hide();
             ui->label->setStyleSheet("border-image: url(:pig.png);");
+            str = "<span style='font-size:18pt; font:¸¼Àº °íµñ; font:bold'>" + codec->toUnicode("µµ") + "</span>";
+            ui->horizontalLayout_yut->addWidget(new QLabel(str,this));
             break;
         case 2:
             ui->label_throw_again->hide();
             ui->label->setStyleSheet("border-image: url(:dog.png);");
+            str = "<span style='font-size:18pt; font:¸¼Àº °íµñ; font:bold'>" + codec->toUnicode("°³") + "</span>";
+            ui->horizontalLayout_yut->addWidget(new QLabel(str,this));
             break;
         case 3:
             ui->label_throw_again->hide();
             ui->label->setStyleSheet("border-image: url(:sheep.png);");
+            str = "<span style='font-size:18pt; font:¸¼Àº °íµñ; font:bold'>" + codec->toUnicode("°É") + "</span>";
+            ui->horizontalLayout_yut->addWidget(new QLabel(str,this));
             break;
         case 4:
             ui->label->setStyleSheet("border-image: url(:cow.png);");
+            str = "<span style='font-size:18pt; font:¸¼Àº °íµñ; font:bold'>" + codec->toUnicode("À·") + "</span>";
+            ui->horizontalLayout_yut->addWidget(new QLabel(str,this));
             ui->label_throw_again->show();
             break;
         case 5:
             ui->label->setStyleSheet("border-image: url(:horse.png);");
+            str = "<span style='font-size:18pt; font:¸¼Àº °íµñ; font:bold'>" + codec->toUnicode("¸ð") + "</span>";
+            ui->horizontalLayout_yut->addWidget(new QLabel(str,this));
             ui->label_throw_again->show();
             break;
         }

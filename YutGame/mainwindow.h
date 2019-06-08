@@ -7,6 +7,7 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QMessageBox>
+#include <QTextCodec>
 
 namespace Ui {
 class MainWindow;
@@ -37,7 +38,6 @@ private slots:
     void on_Location0_clicked();
 
 private:
-    static MainWindow * pMainWindow;
     Ui::MainWindow *ui;
     int player_num;
     int piece_num;
