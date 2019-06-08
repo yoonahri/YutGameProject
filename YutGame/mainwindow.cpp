@@ -93,7 +93,8 @@ void MainWindow::getBoardLocationNum(){
                 this->highlightMovablePos(this->gamemanager.getYutNum(0), i, true);
                 this->init_board = i;
                 button->setText("");
-                if(this->gamemanager.getBoardPiece(i) != 0 || i != 29){
+                if(this->gamemanager.getBoardPiece(i) != 0 && i != 29){
+                    cout<<"get board piece : "<<this->gamemanager.getBoardPiece(i)<<endl;
                     if(i == 0 || i == 5 || i == 10 || i == 15 || i == 22){
                         button->setStyleSheet("border-image: url(:doublecircle.png);");
                     }
@@ -104,13 +105,16 @@ void MainWindow::getBoardLocationNum(){
             }
             else if(this->gamemanager.getGameState() == DEST_MOVE){
                 if(i != 29){
-                    //this->highlightMovablePos(this->gamemanager.getYutNum(), this->init_board, false);
                     this->movePiece(i, this->init_board);
                 }
                 else{
-                    this->highlightMovablePos(this->gamemanager.getYutNum(0), this->init_board, false);
-                    button->setStyleSheet("border-image: url(:realgoalin.png);");
-                    //button->setText("goal in!");
+                    for(size_t m = 0 ; m < gamemanager.getMovablePos(this->init_board,this->gamemanager.getYutNum(0)).size() ; m++){
+                        if(gamemanager.getMovablePos(this->init_board,this->gamemanager.getYutNum(0))[m] == i){
+                            this->highlightMovablePos(this->gamemanager.getYutNum(0), this->init_board, false);
+                            button->setStyleSheet("border-image: url(:realgoalin.png);");
+                        }
+                    }
+
                 }
 
                 this->gamemanager.setBoard(i);
@@ -169,22 +173,29 @@ void MainWindow::highlightMovablePos(int num_of_yut, int clicked_board, bool vis
                 }
             }
             else{
-                switch(existedPiece){
-                case 0:
-                    buttonList[i]->setStyleSheet("border-image: url(:red.png);");
-                    break;
-                case 1:
-                    buttonList[i]->setStyleSheet("border-image: url(:orange.png);");
-                    break;
-                case 2:
-                    buttonList[i]->setStyleSheet("border-image: url(:green.png);");
-                    break;
-                case 3:
-                    buttonList[i]->setStyleSheet("border-image: url(:blue.png);");
-                    break;
+                if(i != 29){
+                    switch(existedPiece){
+                    case 0:
+                        buttonList[i]->setStyleSheet("border-image: url(:red.png);");
+                        break;
+                    case 1:
+                        buttonList[i]->setStyleSheet("border-image: url(:orange.png);");
+                        break;
+                    case 2:
+                        buttonList[i]->setStyleSheet("border-image: url(:green.png);");
+                        break;
+                    case 3:
+                        buttonList[i]->setStyleSheet("border-image: url(:blue.png);");
+                        break;
+                    }
+                    if(this->gamemanager.getBoardStatus(i)[existedPiece] > 1){
+                        buttonList[i]->setText(QString::number(this->gamemanager.getBoardStatus(i)[existedPiece]));
+                    }
                 }
-                if(this->gamemanager.getBoardStatus(i)[existedPiece] > 1){
-                    buttonList[i]->setText(QString::number(this->gamemanager.getBoardStatus(i)[existedPiece]));
+                else if(i == 29){
+                    buttonList[i]->setStyleSheet("border-image: none");
+                    buttonList[i]->setStyleSheet("background: transparent");
+                    buttonList[i]->setText("");
                 }
             }
         }
@@ -198,6 +209,7 @@ void MainWindow::movePiece(int clicked_piece, int init_piece){
             highlightMovablePos(this->gamemanager.getYutNum(0), this->init_board, false);
             switch(gamemanager.getTurn()){
             case 0:
+                cout<<"is it here?"<<endl;
                 buttonList[clicked_piece]->setStyleSheet("border-image: url(:red.png);");
                 break;
             case 1:
