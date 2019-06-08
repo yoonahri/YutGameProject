@@ -2,23 +2,16 @@
 #define GAMEMANAGER_H
 
 #include "board.h"
-//#include "ctime"
-//#include "queue"
 #include "gamestate.h"
 #include "yutmanager.h"
-
-//enum GAMESTATE { THROW, INIT_MOVE, DEST_MOVE, WAIT };
 
 class GameManager
 {
 private:
     int num_of_player;
     int num_of_piece;
-    //int init_board;
-    //int dest_board;
     int winner;
     int gamestate;
-    //queue<int> result_of_yuts;
     Board board;
     YutManager yut_manager;
 

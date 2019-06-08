@@ -13,13 +13,10 @@ void YutManager::throwYut(){
     int result = ((int)rand()) % 47;
 
     result_of_yuts.push(probabilityOfYut[result]);
-
-    cout<<probabilityOfYut[result]<<endl;//test
 }
 
 void YutManager::testThrowYut(int yut){
     result_of_yuts.push(yut);
-    cout<<"yut : "<<yut<<endl; //test
 }
 
 void YutManager::popYut(){

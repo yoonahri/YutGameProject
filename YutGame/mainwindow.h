@@ -22,7 +22,7 @@ public:
     void setGameManager(int, int);
     void createScoreBoard();
     void createPiece();
-    void getBoardLocationNum();
+    void clickAndShow();
     void highlightMovablePos(int, int, bool);
     void movePiece(int, int);
     void showTurn();

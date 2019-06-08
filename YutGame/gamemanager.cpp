@@ -19,7 +19,6 @@ int GameManager::getGameState(){
 void GameManager::setBoard(int clicked){
     if(gamestate == INIT_MOVE){
         if(board.setInitBoard(clicked)){
-            //highlight 함
             gamestate = DEST_MOVE;
         }
     }
@@ -39,7 +38,7 @@ void GameManager::setBoard(int clicked){
                         gamestate = INIT_MOVE;
                     }
                     else{
-                        cout << "error" << endl; //test용
+                        cout << "error" << endl; //for check
                     }
                 }
 
@@ -49,7 +48,6 @@ void GameManager::setBoard(int clicked){
 
                 if(board.gameOver() > -1){
                     cout << "game over" << endl;
-                    //게임 종료 작업
                     winner = board.gameOver();
                 }
             }
@@ -62,7 +60,6 @@ void GameManager::setBoard(int clicked){
 
 void GameManager::throwYut(){
     cout << "turn : " << board.getTurn() << endl;
-
     if(gamestate == THROW){
         yut_manager.throwYut();
         if(yut_manager.getYutNum(1) < 4){
@@ -74,7 +71,6 @@ void GameManager::throwYut(){
 
 void GameManager::testThrowYut(int yut){
     cout << "turn : "<< board.getTurn() << endl;
-
     if(gamestate == THROW){
         yut_manager.testThrowYut(yut);
         if(yut_manager.getYutNum(1) < 4){

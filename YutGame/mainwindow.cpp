@@ -42,7 +42,7 @@ MainWindow::MainWindow(QWidget *parent) :
     buttonList.push_back(ui->Locationgoal);
     ui->label_turn->setStyleSheet("border-image: url(:red.png);");
     ui->label_throw_again->hide();
-    getBoardLocationNum();
+    clickAndShow();
 
 }
 
@@ -60,6 +60,7 @@ void MainWindow :: createScoreBoard(){
         ui->horizontalLayout_score->itemAt(i)->widget()->show();
     }
 }
+
 void MainWindow::createPiece(){
 
     for(int i = 0; i<4; i++){
@@ -80,7 +81,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::getBoardLocationNum(){
+void MainWindow::clickAndShow(){
 
     for (int i = 0; i < buttonList.size(); i++) {
         QPushButton* button = buttonList[i];
@@ -96,7 +97,6 @@ void MainWindow::getBoardLocationNum(){
                 this->init_board = i;
                 button->setText("");
                 if(this->gamemanager.getBoardPiece(i) != 0 && i != 29){
-                    cout<<"get board piece : "<<this->gamemanager.getBoardPiece(i)<<endl;
                     if(i == 0 || i == 5 || i == 10 || i == 15 || i == 22){
                         button->setStyleSheet("border-image: url(:doublecircle.png);");
                     }
@@ -219,7 +219,6 @@ void MainWindow::movePiece(int clicked_piece, int init_piece){
             highlightMovablePos(this->gamemanager.getYutNum(0), this->init_board, false);
             switch(gamemanager.getTurn()){
             case 0:
-                cout<<"is it here?"<<endl;
                 buttonList[clicked_piece]->setStyleSheet("border-image: url(:red.png);");
                 break;
             case 1:
@@ -323,7 +322,6 @@ void MainWindow::on_throwButton_clicked()
             ui->label_throw_again->show();
             break;
         }
-
     }
     else {
         cout << "cannot throw yut" << endl;
@@ -334,8 +332,6 @@ void MainWindow::on_throwButton_clicked()
 
 void MainWindow::on_testButton_clicked()
 {
-
-
     if(gamemanager.getGameState() == THROW){
 
         gamemanager.testThrowYut(this->ui->testYutBox->currentIndex());
@@ -393,7 +389,6 @@ void MainWindow::on_Location0_clicked()
     if( gamemanager.getGameState() == INIT_MOVE && gamemanager.getBoardPiece(0) != 0){
         ui->gridLayout->itemAtPosition(gamemanager.getTurn(),gamemanager.getBoardPiece(0)-1)->widget()->hide();
     }
-
 }
 
 void MainWindow::showTurn()

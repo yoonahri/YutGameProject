@@ -38,11 +38,10 @@ Board::Board(){
     for(size_t i = 0; i < 30; i++){
         board_status.push_back(vector<int>());
     }
-//    this->isKilled = false;
 }
 
 void Board::changeTurn(){
-    //턴 변경
+    //change turn
     this->curr_turn += 1;
 
     if(curr_turn == player_num){
@@ -92,8 +91,6 @@ bool Board::setDestBoard(int yutnum, size_t clicked){
 }
 
 int Board::move(){
-//void Board::move(size_t turn, size_t init_board, size_t clicked_board){
-
     /*
      * 말이 처음 위치에 있는지 구분해줄 필요가 있음,
      * 만약 처음 위치에 있다면 그 위치에 있는 내 말들중 단 하나의 말만 이동시킬 위치로 이동
@@ -101,7 +98,6 @@ int Board::move(){
      * 처음위치가 아니라면 그 위치에 있는 내말(업은 말 포함) 전부가 이동시킬 위치로 이동
      * 이동 할 경우 처음 위치의 말은 0이 됨
     */
-
     size_t searchClickedBoardTurn = 99;
 
     for(size_t i = 0; i < player_num; i++){
@@ -131,7 +127,6 @@ int Board::move(){
             //this->isKilled = true;
             return KILL;
         }
-        //board_status[init_board][curr_turn] -= 1;
     }
 
     else{ //이미 이동했던 말 일때
@@ -151,7 +146,6 @@ int Board::move(){
                 board_status[dest_board][searchClickedBoardTurn] = 0;
                 board_status[dest_board][curr_turn] += board_status[init_board][curr_turn];
                 board_status[init_board][curr_turn] = 0;
-                //this->isKilled = true;
                 return KILL;
             }
             else{
@@ -160,10 +154,9 @@ int Board::move(){
                 return MOVE;
             }
         }
-        //board_status[init_board][curr_turn] = 0;
     }
 
-    //벡터 확인용 코드, 삭제 예정
+    //code for check
     for(size_t i = 0; i < 30; i++){
         for(size_t j = 0; j < board_status[i].size(); j++){
             cout<<i<<":"<<board_status[i][j]<<" ";
@@ -186,16 +179,6 @@ bool Board::isMovablePos(int num_of_board_init, int num_of_yut, int num_of_board
     return false;
 }
 
-/*
-bool Board::isKillingEventOccured(){
-    return isKilled;
-}
-
-void Board::isKilledDone(){
-    isKilled = false;
-}
-*/
-
 int Board::gameOver(){
     for(size_t i = 0; i < player_num; i++){
         if(board_status[29][i] == piece_num){
@@ -208,6 +191,3 @@ int Board::gameOver(){
 int Board::getTurn(){
     return curr_turn;
 }
-
-
-
