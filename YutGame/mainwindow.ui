@@ -40,6 +40,14 @@
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="styleSheet">
      <string notr="true">#Location19 {
 background-color: transparent;
@@ -70,6 +78,14 @@ background-repeat: none;
       <horstretch>0</horstretch>
       <verstretch>0</verstretch>
      </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="styleSheet">
      <string notr="true">#Location18 {
@@ -102,6 +118,14 @@ background-repeat: none;
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="styleSheet">
      <string notr="true">#Location17 {
 background-color: transparent;
@@ -133,6 +157,14 @@ background-repeat: none;
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="styleSheet">
      <string notr="true">#Location16 {
 background-color: transparent;
@@ -160,6 +192,14 @@ background-repeat: none;
       <horstretch>0</horstretch>
       <verstretch>0</verstretch>
      </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="styleSheet">
      <string notr="true">#Location29{
@@ -189,6 +229,14 @@ background-repeat: none;
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="styleSheet">
      <string notr="true">#Location28 {
 background-color: transparent;
@@ -216,6 +264,14 @@ background-repeat: none;
       <horstretch>0</horstretch>
       <verstretch>0</verstretch>
      </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="styleSheet">
      <string notr="true">#Location26 {
@@ -245,6 +301,14 @@ background-repeat: none;
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="styleSheet">
      <string notr="true">#Location25 {
 background-color: transparent;
@@ -272,6 +336,14 @@ background-repeat: none;
       <horstretch>0</horstretch>
       <verstretch>0</verstretch>
      </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="styleSheet">
      <string notr="true">#Location24 {
@@ -301,6 +373,14 @@ background-repeat: none;
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="styleSheet">
      <string notr="true">#Location23 {
 background-color: transparent;
@@ -328,6 +408,14 @@ background-repeat: none;
       <horstretch>0</horstretch>
       <verstretch>0</verstretch>
      </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="styleSheet">
      <string notr="true">#Location21 {
@@ -357,6 +445,14 @@ background-repeat: none;
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="styleSheet">
      <string notr="true">#Location20 {
 background-color: transparent;
@@ -384,6 +480,14 @@ background-repeat: none;
       <horstretch>0</horstretch>
       <verstretch>0</verstretch>
      </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="styleSheet">
      <string notr="true">#Location22 {
@@ -439,6 +543,14 @@ background-repeat: none;
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="styleSheet">
      <string notr="true">#Location5 {
 background-color: transparent;
@@ -466,6 +578,14 @@ background-repeat: none;
       <horstretch>0</horstretch>
       <verstretch>0</verstretch>
      </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="styleSheet">
      <string notr="true">#Location4 {
@@ -495,6 +615,14 @@ background-repeat: none;
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="styleSheet">
      <string notr="true">#Location3 {
 background-color: transparent;
@@ -522,6 +650,14 @@ background-repeat: none;
       <horstretch>0</horstretch>
       <verstretch>0</verstretch>
      </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="styleSheet">
      <string notr="true">#Location2 {
@@ -551,6 +687,14 @@ background-repeat: none;
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="styleSheet">
      <string notr="true">#Location1 {
 background-color: transparent;
@@ -578,6 +722,14 @@ background-repeat: none;
       <horstretch>0</horstretch>
       <verstretch>0</verstretch>
      </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="styleSheet">
      <string notr="true">#Location0 {
@@ -610,6 +762,14 @@ background-repeat: none;
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="styleSheet">
      <string notr="true">#Location11 {
 background-color: transparent;
@@ -637,6 +797,14 @@ background-repeat: none;
       <horstretch>0</horstretch>
       <verstretch>0</verstretch>
      </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="styleSheet">
      <string notr="true">#Location10 {
@@ -669,6 +837,14 @@ background-repeat: none;
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="styleSheet">
      <string notr="true">#Location14 {
 background-color: transparent;
@@ -699,6 +875,14 @@ background-repeat: none;
       <horstretch>0</horstretch>
       <verstretch>0</verstretch>
      </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="styleSheet">
      <string notr="true">#Location12{
@@ -731,6 +915,14 @@ background-repeat: none;
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="styleSheet">
      <string notr="true">#Location13 {
 background-color: transparent;
@@ -758,6 +950,14 @@ background-repeat: none;
       <horstretch>0</horstretch>
       <verstretch>0</verstretch>
      </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="styleSheet">
      <string notr="true">#Location15 {
@@ -787,6 +987,14 @@ background-repeat: none;
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="styleSheet">
      <string notr="true">#Location6 {
 background-color: transparent;
@@ -814,6 +1022,14 @@ background-repeat: none;
       <horstretch>0</horstretch>
       <verstretch>0</verstretch>
      </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="styleSheet">
      <string notr="true">#Location7 {
@@ -846,6 +1062,14 @@ background-repeat: none;
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="styleSheet">
      <string notr="true">#Location9 {
 background-color: transparent;
@@ -873,6 +1097,14 @@ background-repeat: none;
       <horstretch>0</horstretch>
       <verstretch>0</verstretch>
      </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="styleSheet">
      <string notr="true">#Location8{

@@ -146,6 +146,9 @@ void MainWindow::highlightMovablePos(int num_of_yut, int clicked_board, bool vis
                 buttonList[gamemanager.getMovablePos(clicked_board,num_of_yut)[m]]->setStyleSheet("border-image: url(:highlightcircle.png);");
             }
         }
+        else {
+            QMessageBox::information(this, "warning", "click your piece!");
+        }
     }
 
     else{
@@ -254,6 +257,10 @@ void MainWindow::movePiece(int clicked_piece, int init_piece){
                         }
                 }
             }
+        }
+
+        else {
+            QMessageBox::information(this, "warning", "cannot move to this place!");
         }
     }
 }
