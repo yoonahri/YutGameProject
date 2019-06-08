@@ -90,7 +90,9 @@ void MainWindow::getBoardLocationNum(){
                 this->gamemanager.setBoard(i);
                 buttonList[29]->setStyleSheet("border-image: none");
                 buttonList[29]->setStyleSheet("background: transparent");
-                this->highlightMovablePos(this->gamemanager.getYutNum(0), i, true);
+                if(i != 29){
+                    this->highlightMovablePos(this->gamemanager.getYutNum(0), i, true);
+                }
                 this->init_board = i;
                 button->setText("");
                 if(this->gamemanager.getBoardPiece(i) != 0 && i != 29){

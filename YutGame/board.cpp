@@ -32,6 +32,7 @@ Board::Board(){
         { {25}, {22}, {27}, {28}, {29}, {29} },
         { {22}, {28}, {29}, {29}, {29}, {29} },
         { {27}, {29}, {29}, {29}, {29}, {29} },
+        { {29}, {29}, {29}, {29}, {29}, {29} },
     };
 
     for(size_t i = 0; i < 30; i++){
@@ -71,7 +72,7 @@ vector<int> Board::getBoardStatus(int init_board){
 }
 
 bool Board::setInitBoard(size_t clicked){
-    if(board_status[clicked][curr_turn] != 0){
+    if(clicked != 29 && board_status[clicked][curr_turn] != 0){
         init_board = clicked;
         return true;
     }
